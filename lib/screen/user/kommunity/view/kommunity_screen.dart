@@ -94,7 +94,9 @@ class _KommunityScreenState extends State<KommunityScreen> {
                 const SizedBox(height: 2),
                 _buildSearchField(),
                 const SizedBox(height: 24),
+
                 _buildSectionHeader('즐겨찾는 게시판'),
+
                 const SizedBox(height: 12),
                 FavoriteBoards(
                   boards: _boardCategories,
@@ -107,6 +109,7 @@ class _KommunityScreenState extends State<KommunityScreen> {
                     );
                   },
                 ),
+
                 const SizedBox(height: 24),
                 _buildSectionHeader('실시간 인기 글 🔥'),
                 const SizedBox(height: 12),

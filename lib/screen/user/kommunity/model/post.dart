@@ -10,6 +10,7 @@ class Post {
   final int likes;
   final int comments;
   final int scraps;
+  final String? boardName;
 
   const Post({
     required this.title,
@@ -23,5 +24,6 @@ class Post {
     this.comments = 0,
     this.scraps = 0,
     this.author = '',
+    this.boardName,
   });
 }

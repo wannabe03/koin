@@ -1,9 +1,7 @@
 import 'package:koin/screen/user/kommunity/model/post.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart'; // 날짜 포맷을 위해 추가 (pubspec.yaml에 intl 패키지 추가 필요)
+import 'package:intl/intl.dart';
 
-// --- 댓글 UI 구현을 위한 간단한 댓글 모델 ---
-// (실제로는 Post 모델처럼 별도 파일로 분리하고, Post 모델이 List<Comment>를 가져야 함)
 class Comment {
   final String id;
   final String author;
@@ -99,8 +97,8 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
 
     final newComment = Comment(
       id: DateTime.now().millisecondsSinceEpoch.toString(),
-      author: _isAnonymous ? '익명' : 'Koiny', // (임시 사용자 이름)
-      flag: _isAnonymous ? '' : '🇰🇷', // (임시 국기 비워둠)
+      author: _isAnonymous ? '익명' : 'Koiny',
+      flag: _isAnonymous ? '😶' : '🇰🇷',
       content: _commentController.text,
       date: formattedDate,
       likes: 0,
@@ -275,9 +273,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
                       ],
                     ),
                   ),
-
                   Container(height: 8, color: const Color(0xFFF7F7F7)),
-
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child:
@@ -305,7 +301,6 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
               ),
             ),
           ),
-
           _buildCommentInputField(),
         ],
       ),
@@ -391,7 +386,6 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
             ),
           ],
         ),
-
         if (comment.replies != null && comment.replies!.isNotEmpty)
           Padding(
             padding: const EdgeInsets.only(left: 40.0, top: 10),
@@ -404,7 +398,6 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
               },
             ),
           ),
-
         const SizedBox(height: 16),
       ],
     );
@@ -529,7 +522,7 @@ class _PostDetailScreenState extends State<PostDetailScreen> {
               child: TextField(
                 controller: _commentController,
                 decoration: const InputDecoration(
-                  hintText: '',
+                  hintText: 'Write here',
                   border: InputBorder.none,
                 ),
               ),

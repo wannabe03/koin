@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:koin/common/const/colors.dart';
+import 'package:koin/screen/user/kommunity/view/board_screen.dart';
 
 class KoinCommunity extends StatelessWidget {
   const KoinCommunity({super.key});
@@ -74,22 +75,31 @@ class KoinCommunity extends StatelessWidget {
                     ),
                   ],
                 ),
-                Text(
-                  '전체보기 →',
-                  style: TextStyle(
-                    color: PRIMARY_COLOR,
-                    fontFamily: 'Pretendard',
-                    fontSize: 10,
-                    fontWeight: FontWeight.w500,
-                    letterSpacing: -0.2,
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder:
+                            (context) => const BoardScreen(boardName: '전체 게시판'),
+                      ),
+                    );
+                  },
+                  child: Text(
+                    '전체보기 →',
+                    style: TextStyle(
+                      color: PRIMARY_COLOR,
+                      fontFamily: 'Pretendard',
+                      fontSize: 10,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: -0.2,
+                    ),
+                    textAlign: TextAlign.right,
                   ),
-                  textAlign: TextAlign.right,
                 ),
               ],
             ),
-
             const SizedBox(height: 16),
-
             ListView.separated(
               itemCount: posts.length,
               shrinkWrap: true,
