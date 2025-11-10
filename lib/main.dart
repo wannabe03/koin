@@ -20,11 +20,6 @@ class KoinApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       home: SplashScreenWrapper(),
-<<<<<<< HEAD
-    ),
-  );
-=======
     );
   }
->>>>>>> 1a77e8d (style: define text styles)
 }
