@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:koin/theme.dart';
-import 'package:koin/user/views/home_screen.dart';
-import 'package:koin/user/views/auth/views/splash_screen.dart';
+import 'package:koin/screens/views/home_screen.dart';
+import 'package:koin/screens/auth/views/splash_screen.dart';
 
 void main() {
   runApp(const KoinApp());

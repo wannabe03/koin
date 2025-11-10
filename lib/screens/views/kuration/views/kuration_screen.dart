@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:koin/user/views/kuration/widgets/kuration_search_field.dart';
-import 'package:koin/user/views/kuration/widgets/kuration_tabs.dart';
-import 'package:koin/user/views/kuration/widgets/kuration_featured.dart';
-import 'package:koin/user/views/kuration/widgets/kuration_grid.dart';
+import 'package:koin/screens/views/kuration/widgets/kuration_search_field.dart';
+import 'package:koin/screens/views/kuration/widgets/kuration_tabs.dart';
+import 'package:koin/screens/views/kuration/widgets/kuration_featured.dart';
+import 'package:koin/screens/views/kuration/widgets/kuration_grid.dart';
 import 'package:koin/common/const/colors.dart';
 
 class KurationScreen extends StatefulWidget {
@@ -12,7 +12,8 @@ class KurationScreen extends StatefulWidget {
   State<KurationScreen> createState() => _KurationScreenState();
 }
 
-class _KurationScreenState extends State<KurationScreen> with SingleTickerProviderStateMixin {
+class _KurationScreenState extends State<KurationScreen>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
   final List<String> _tabs = ['전체', '음식', '어학', '생활', '문화', '행정', '장소'];
   final PageController _pageController = PageController();
@@ -56,9 +57,10 @@ class _KurationScreenState extends State<KurationScreen> with SingleTickerProvid
             Expanded(
               child: TabBarView(
                 controller: _tabController,
-                children: _tabs.map((tabName) {
-                  return KurationGrid(items: gridItems);
-                }).toList(),
+                children:
+                    _tabs.map((tabName) {
+                      return KurationGrid(items: gridItems);
+                    }).toList(),
               ),
             ),
           ],
@@ -67,5 +69,3 @@ class _KurationScreenState extends State<KurationScreen> with SingleTickerProvid
     );
   }
 }
-
-

@@ -4,7 +4,7 @@ import '../widgets/search_app_bar.dart';
 import '../widgets/kuration_banner.dart';
 import 'package:koin/common/const/colors.dart';
 import 'package:koin/common/widgets/custom_bottom_navigation_bar.dart';
-import 'package:koin/user/views/home_screen.dart';
+import 'package:koin/screens/views/home_screen.dart';
 
 class SearchScreen extends StatelessWidget {
   final Function(int)? onTabSelected;
@@ -21,12 +21,9 @@ class SearchScreen extends StatelessWidget {
               height: 75,
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
-                  begin: Alignment.centerLeft,  
+                  begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
-                  colors: [
-                    PRIMARY_COLOR, 
-                    SECONDARY_COLOR,
-                  ],
+                  colors: [PRIMARY_COLOR, SECONDARY_COLOR],
                 ),
               ),
             ),

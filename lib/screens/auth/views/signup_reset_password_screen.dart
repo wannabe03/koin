@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:koin/common/const/colors.dart';
-import 'package:koin/user/views/auth/widgets/page_indicator.dart';
+import 'package:koin/screens/auth/widgets/page_indicator.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
   const ResetPasswordScreen({super.key});
@@ -147,5 +147,3 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
     );
   }
 }
-
-

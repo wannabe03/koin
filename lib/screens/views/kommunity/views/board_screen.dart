@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:koin/user/views/kommunity/models/post.dart';
-import 'package:koin/user/views/kommunity/widgets/board/filter_button.dart';
-import 'package:koin/user/views/kommunity/widgets/board/search_header.dart';
+import 'package:koin/screens/views/kommunity/models/post.dart';
+import 'package:koin/screens/views/kommunity/widgets/board/filter_button.dart';
+import 'package:koin/screens/views/kommunity/widgets/board/search_header.dart';
 
 class BoardScreen extends StatefulWidget {
   final String boardName;
@@ -18,23 +18,79 @@ class _BoardScreenState extends State<BoardScreen> {
   String? _selectedNationality;
 
   final List<String> _regions = const [
-    '서울', '부산', '제주', '인천', '경기', '강원', '충청', '전라', '경상', '세종', '대전', '광주', '대구', '울산',
+    '서울',
+    '부산',
+    '제주',
+    '인천',
+    '경기',
+    '강원',
+    '충청',
+    '전라',
+    '경상',
+    '세종',
+    '대전',
+    '광주',
+    '대구',
+    '울산',
   ];
 
   final List<String> _nationalities = const [
-    '중국', '일본', '대만', '미국', '베트남', '필리핀', '홍콩', '태국', '말레이시아', '싱가폴'
+    '중국',
+    '일본',
+    '대만',
+    '미국',
+    '베트남',
+    '필리핀',
+    '홍콩',
+    '태국',
+    '말레이시아',
+    '싱가폴',
   ];
 
   final List<Post> _posts = const [
-    Post(title: '존댓말', content: '저만 아직도 어려운가요?', timeAgo: '1 minute ago', flag: '🇩🇪'),
-    Post(title: '교환학생', content: '카레부어스트 공급하실분?', timeAgo: '1 minute ago', flag: '🇩🇪'),
-    Post(title: '네덜란드 분들께', content: '펜타포트 두 장 예매했습니다. 같이 가실 분?', timeAgo: '1 minute ago', flag: '🇳🇱', imageUrl: 'https://picsum.photos/id/43/150/150'),
-    Post(title: '김치찌개 레시피', content: '독일식으로 바꿔봤습니다!...', timeAgo: '1 minute ago', flag: '🇩🇪'),
-    Post(title: '안녕하세요', content: '학기 중에 일본 가시는 분 계신가요?', timeAgo: '1 minute ago', flag: '🇯🇵'),
-    Post(title: '제주도', content: '너무 좋다~!!', timeAgo: '1 minute ago', flag: '🇰🇷'),
+    Post(
+      title: '존댓말',
+      content: '저만 아직도 어려운가요?',
+      timeAgo: '1 minute ago',
+      flag: '🇩🇪',
+    ),
+    Post(
+      title: '교환학생',
+      content: '카레부어스트 공급하실분?',
+      timeAgo: '1 minute ago',
+      flag: '🇩🇪',
+    ),
+    Post(
+      title: '네덜란드 분들께',
+      content: '펜타포트 두 장 예매했습니다. 같이 가실 분?',
+      timeAgo: '1 minute ago',
+      flag: '🇳🇱',
+      imageUrl: 'https://picsum.photos/id/43/150/150',
+    ),
+    Post(
+      title: '김치찌개 레시피',
+      content: '독일식으로 바꿔봤습니다!...',
+      timeAgo: '1 minute ago',
+      flag: '🇩🇪',
+    ),
+    Post(
+      title: '안녕하세요',
+      content: '학기 중에 일본 가시는 분 계신가요?',
+      timeAgo: '1 minute ago',
+      flag: '🇯🇵',
+    ),
+    Post(
+      title: '제주도',
+      content: '너무 좋다~!!',
+      timeAgo: '1 minute ago',
+      flag: '🇰🇷',
+    ),
   ];
 
-  Future<void> _showFilterSelectionModal(List<String> options, String filterType) async {
+  Future<void> _showFilterSelectionModal(
+    List<String> options,
+    String filterType,
+  ) async {
     String? currentValue;
     if (filterType == '지역') {
       currentValue = _selectedRegion;
@@ -78,7 +134,10 @@ class _BoardScreenState extends State<BoardScreen> {
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: Text(
                     '$filterType 필터 선택',
-                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
@@ -97,22 +156,28 @@ class _BoardScreenState extends State<BoardScreen> {
                     if (index == 0) {
                       final bool isSelected = currentValue == null;
                       return ListTile(
-                        contentPadding: const EdgeInsets.symmetric(horizontal: 24.0),
-                        leading: isSelected
-                            ? Container(
-                                width: 6,
-                                height: 6,
-                                decoration: const BoxDecoration(
-                                  color: Colors.blueAccent,
-                                  shape: BoxShape.circle,
-                                ),
-                              )
-                            : const SizedBox(width: 6),
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 24.0,
+                        ),
+                        leading:
+                            isSelected
+                                ? Container(
+                                  width: 6,
+                                  height: 6,
+                                  decoration: const BoxDecoration(
+                                    color: Colors.blueAccent,
+                                    shape: BoxShape.circle,
+                                  ),
+                                )
+                                : const SizedBox(width: 6),
                         title: Text(
                           '필터 없음',
                           style: TextStyle(
                             color: isSelected ? Colors.blueAccent : Colors.grey,
-                            fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                            fontWeight:
+                                isSelected
+                                    ? FontWeight.bold
+                                    : FontWeight.normal,
                           ),
                         ),
                         onTap: () => Navigator.pop(context, null),
@@ -121,22 +186,26 @@ class _BoardScreenState extends State<BoardScreen> {
                     final option = options[index - 1];
                     final bool isSelected = option == currentValue;
                     return ListTile(
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 24.0),
-                      leading: isSelected
-                          ? Container(
-                              width: 6,
-                              height: 6,
-                              decoration: const BoxDecoration(
-                                color: Colors.blueAccent,
-                                shape: BoxShape.circle,
-                              ),
-                            )
-                          : const SizedBox(width: 6),
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 24.0,
+                      ),
+                      leading:
+                          isSelected
+                              ? Container(
+                                width: 6,
+                                height: 6,
+                                decoration: const BoxDecoration(
+                                  color: Colors.blueAccent,
+                                  shape: BoxShape.circle,
+                                ),
+                              )
+                              : const SizedBox(width: 6),
                       title: Text(
                         option,
                         style: TextStyle(
                           color: isSelected ? Colors.blueAccent : Colors.black,
-                          fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                          fontWeight:
+                              isSelected ? FontWeight.bold : FontWeight.normal,
                         ),
                       ),
                       onTap: () => Navigator.pop(context, option),
@@ -181,8 +250,14 @@ class _BoardScreenState extends State<BoardScreen> {
                 itemBuilder: (context, index) {
                   final post = _posts[index];
                   return ListTile(
-                    contentPadding: const EdgeInsets.symmetric(vertical: 14.0, horizontal: 16.0),
-                    title: Text(post.title, style: const TextStyle(fontWeight: FontWeight.w900)),
+                    contentPadding: const EdgeInsets.symmetric(
+                      vertical: 14.0,
+                      horizontal: 16.0,
+                    ),
+                    title: Text(
+                      post.title,
+                      style: const TextStyle(fontWeight: FontWeight.w900),
+                    ),
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -198,7 +273,11 @@ class _BoardScreenState extends State<BoardScreen> {
                           children: [
                             Text(
                               post.timeAgo,
-                              style: TextStyle(color: Colors.grey[600], fontSize: 12, fontWeight: FontWeight.w600),
+                              style: TextStyle(
+                                color: Colors.grey[600],
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                             const SizedBox(width: 8),
                             Text(post.flag),
@@ -206,17 +285,18 @@ class _BoardScreenState extends State<BoardScreen> {
                         ),
                       ],
                     ),
-                    trailing: post.imageUrl != null
-                        ? ClipRRect(
-                            borderRadius: BorderRadius.circular(8.0),
-                            child: Image.network(
-                              post.imageUrl!,
-                              width: 60,
-                              height: 60,
-                              fit: BoxFit.cover,
-                            ),
-                          )
-                        : null,
+                    trailing:
+                        post.imageUrl != null
+                            ? ClipRRect(
+                              borderRadius: BorderRadius.circular(8.0),
+                              child: Image.network(
+                                post.imageUrl!,
+                                width: 60,
+                                height: 60,
+                                fit: BoxFit.cover,
+                              ),
+                            )
+                            : null,
                   );
                 },
                 separatorBuilder: (context, index) {
@@ -298,7 +378,8 @@ class _BoardScreenState extends State<BoardScreen> {
               ),
               FilterButton(
                 label: '국적',
-                isSelected: _selectedFilter == '국적' || _selectedNationality != null,
+                isSelected:
+                    _selectedFilter == '국적' || _selectedNationality != null,
                 displayText: _selectedNationality ?? '국적',
                 onTap: () => _showFilterSelectionModal(_nationalities, '국적'),
               ),
@@ -309,5 +390,3 @@ class _BoardScreenState extends State<BoardScreen> {
     );
   }
 }
-
-

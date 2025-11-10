@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:koin/common/const/colors.dart';
-import 'package:koin/user/views/auth/widgets/page_indicator.dart';
+import 'package:koin/screens/auth/widgets/page_indicator.dart';
 import 'package:pinput/pinput.dart';
-import 'package:koin/user/views/auth/views/signup_reset_password_screen.dart';
+import 'package:koin/screens/auth/views/signup_reset_password_screen.dart';
 
 class SecurityCodeScreen extends StatefulWidget {
   final String email;
@@ -68,12 +68,16 @@ class _SecurityCodeScreenState extends State<SecurityCodeScreen> {
               textAlign: TextAlign.center,
               text: TextSpan(
                 style: const TextStyle(
-                    color: Colors.black, fontSize: 16, height: 1.5),
+                  color: Colors.black,
+                  fontSize: 16,
+                  height: 1.5,
+                ),
                 children: [
                   const TextSpan(text: 'We sent numbers to your email '),
                   TextSpan(
-                      text: widget.email,
-                      style: const TextStyle(fontWeight: FontWeight.bold)),
+                    text: widget.email,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 ],
               ),
             ),
@@ -81,9 +85,10 @@ class _SecurityCodeScreenState extends State<SecurityCodeScreen> {
             const Text(
               'Please enter the code to verify your identity.',
               style: TextStyle(
-                  color: PRIMARY_COLOR,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600),
+                color: PRIMARY_COLOR,
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+              ),
             ),
             const SizedBox(height: 40),
             Pinput(
@@ -111,8 +116,10 @@ class _SecurityCodeScreenState extends State<SecurityCodeScreen> {
                   backgroundColor: Color.fromRGBO(206, 225, 255, 1.0),
                   elevation: 0,
                 ),
-                child: const Text('Resend the code',
-                    style: TextStyle(color: WHITE_COLOR)),
+                child: const Text(
+                  'Resend the code',
+                  style: TextStyle(color: WHITE_COLOR),
+                ),
               ),
             ),
             const Spacer(),
@@ -136,11 +143,14 @@ class _SecurityCodeScreenState extends State<SecurityCodeScreen> {
                     borderRadius: BorderRadius.circular(26),
                   ),
                 ),
-                child: const Text('Next',
-                    style: TextStyle(
-                        fontFamily: 'Pretendard',
-                        fontSize: 18,
-                        fontWeight: FontWeight.w400)),
+                child: const Text(
+                  'Next',
+                  style: TextStyle(
+                    fontFamily: 'Pretendard',
+                    fontSize: 18,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
               ),
             ),
             const SizedBox(height: 20),
@@ -150,5 +160,3 @@ class _SecurityCodeScreenState extends State<SecurityCodeScreen> {
     );
   }
 }
-
-

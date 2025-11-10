@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:koin/common/const/colors.dart';
-import 'package:koin/user/views/auth/widgets/dropdown_field.dart';
-import 'package:koin/user/views/auth/views/signup_category_selection_screen.dart';
+import 'package:koin/screens/auth/widgets/dropdown_field.dart';
+import 'package:koin/screens/auth/views/signup_category_selection_screen.dart';
 
 class SignUpInfoScreen extends StatefulWidget {
   const SignUpInfoScreen({super.key});
@@ -81,23 +81,29 @@ class _SignUpInfoScreenState extends State<SignUpInfoScreen> {
               const Text(
                 '코인을 더욱 유용하게 사용하기 위해',
                 style: TextStyle(
-                    fontFamily: 'Pretendard',
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600,
-                    color: BLACK_COLOR),
+                  fontFamily: 'Pretendard',
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                  color: BLACK_COLOR,
+                ),
               ),
               const SizedBox(height: 5),
               RichText(
                 text: const TextSpan(
                   style: TextStyle(
-                      fontFamily: 'Pretendard',
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600),
+                    fontFamily: 'Pretendard',
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                  ),
                   children: <TextSpan>[
                     TextSpan(
-                        text: '방문 정보', style: TextStyle(color: PRIMARY_COLOR)),
+                      text: '방문 정보',
+                      style: TextStyle(color: PRIMARY_COLOR),
+                    ),
                     TextSpan(
-                        text: '를 알려주세요.', style: TextStyle(color: BLACK_COLOR)),
+                      text: '를 알려주세요.',
+                      style: TextStyle(color: BLACK_COLOR),
+                    ),
                   ],
                 ),
               ),
@@ -153,12 +159,14 @@ class _SignUpInfoScreenState extends State<SignUpInfoScreen> {
                     }
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => CategorySelectionScreen(
-                          selectedNationality: _selectedNationality!,
-                          selectedLanguage: _selectedLanguage!,
-                          selectedResidenceType: _selectedResidenceType!,
-                          selectedResidencePeriod: _selectedResidencePeriod!,
-                        ),
+                        builder:
+                            (context) => CategorySelectionScreen(
+                              selectedNationality: _selectedNationality!,
+                              selectedLanguage: _selectedLanguage!,
+                              selectedResidenceType: _selectedResidenceType!,
+                              selectedResidencePeriod:
+                                  _selectedResidencePeriod!,
+                            ),
                       ),
                     );
                   },
@@ -170,11 +178,14 @@ class _SignUpInfoScreenState extends State<SignUpInfoScreen> {
                       borderRadius: BorderRadius.circular(26),
                     ),
                   ),
-                  child: const Text('Next',
-                      style: TextStyle(
-                          fontFamily: 'Pretendard',
-                          fontSize: 18,
-                          fontWeight: FontWeight.w400)),
+                  child: const Text(
+                    'Next',
+                    style: TextStyle(
+                      fontFamily: 'Pretendard',
+                      fontSize: 18,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
                 ),
               ),
               const SizedBox(height: 20),
@@ -185,5 +196,3 @@ class _SignUpInfoScreenState extends State<SignUpInfoScreen> {
     );
   }
 }
-
-

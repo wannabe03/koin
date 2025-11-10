@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:koin/common/const/colors.dart';
-import 'package:koin/user/views/auth/views/login_main_screen.dart';
+import 'package:koin/screens/auth/views/login_main_screen.dart';
 
 class SplashScreenWrapper extends StatefulWidget {
   const SplashScreenWrapper({super.key});
@@ -49,13 +49,14 @@ class SplashScreenUI extends StatelessWidget {
             children: [
               ShaderMask(
                 blendMode: BlendMode.srcIn,
-                shaderCallback: (bounds) => const LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [WHITE_COLOR, WHITE_COLOR],
-                ).createShader(
-                  Rect.fromLTWH(0, 0, bounds.width, bounds.height),
-                ),
+                shaderCallback:
+                    (bounds) => const LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [WHITE_COLOR, WHITE_COLOR],
+                    ).createShader(
+                      Rect.fromLTWH(0, 0, bounds.width, bounds.height),
+                    ),
                 child: const Text(
                   'Koin',
                   style: TextStyle(
@@ -100,5 +101,3 @@ class SplashScreenUI extends StatelessWidget {
     );
   }
 }
-
-

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:koin/common/const/colors.dart';
-import 'package:koin/user/views/auth/views/login_email_screen.dart';
-import 'package:koin/user/views/auth/views/signup_info_screen.dart';
+import 'package:koin/screens/auth/views/login_email_screen.dart';
+import 'package:koin/screens/auth/views/signup_info_screen.dart';
 
 class MainLoginScreen extends StatelessWidget {
   const MainLoginScreen({super.key});
@@ -147,5 +147,3 @@ class MainLoginScreen extends StatelessWidget {
     );
   }
 }
-
-

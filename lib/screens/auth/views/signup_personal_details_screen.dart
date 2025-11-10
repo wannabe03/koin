@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:koin/common/const/colors.dart';
-import 'package:koin/user/views/auth/widgets/page_indicator.dart';
-import 'package:koin/user/views/auth/views/signup_security_code_screen.dart';
+import 'package:koin/screens/auth/widgets/page_indicator.dart';
+import 'package:koin/screens/auth/views/signup_security_code_screen.dart';
 
 class PersonalDetailsScreen extends StatefulWidget {
   final String selectedNationality;
@@ -45,11 +45,14 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label,
-            style: const TextStyle(
-                color: PRIMARY_COLOR,
-                fontSize: 16,
-                fontWeight: FontWeight.w500)),
+        Text(
+          label,
+          style: const TextStyle(
+            color: PRIMARY_COLOR,
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
         TextField(
           controller: controller,
           style: const TextStyle(color: BLACK_COLOR, fontSize: 18),
@@ -57,9 +60,11 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
             hintText: hintText,
             hintStyle: const TextStyle(color: Colors.grey),
             enabledBorder: const UnderlineInputBorder(
-                borderSide: BorderSide(color: PRIMARY_COLOR)),
+              borderSide: BorderSide(color: PRIMARY_COLOR),
+            ),
             focusedBorder: const UnderlineInputBorder(
-                borderSide: BorderSide(color: PRIMARY_COLOR)),
+              borderSide: BorderSide(color: PRIMARY_COLOR),
+            ),
           ),
         ),
         const SizedBox(height: 24),
@@ -79,9 +84,14 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
           icon: const Icon(Icons.arrow_back_ios, color: Colors.grey),
           onPressed: () => Navigator.of(context).pop(),
         ),
-        title: const Text('Sign In',
-            style: TextStyle(
-                color: WHITE_COLOR, fontWeight: FontWeight.bold, fontSize: 24)),
+        title: const Text(
+          'Sign In',
+          style: TextStyle(
+            color: WHITE_COLOR,
+            fontWeight: FontWeight.bold,
+            fontSize: 24,
+          ),
+        ),
         centerTitle: true,
       ),
       body: Padding(
@@ -121,11 +131,14 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
                     borderRadius: BorderRadius.circular(26),
                   ),
                 ),
-                child: const Text('Next',
-                    style: TextStyle(
-                        fontFamily: 'Pretendard',
-                        fontSize: 18,
-                        fontWeight: FontWeight.w400)),
+                child: const Text(
+                  'Next',
+                  style: TextStyle(
+                    fontFamily: 'Pretendard',
+                    fontSize: 18,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
               ),
             ),
           ],
@@ -134,5 +147,3 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
     );
   }
 }
-
-

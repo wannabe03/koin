@@ -1,4 +1,4 @@
-import 'package:koin/user/views/kommunity/models/post.dart';
+import 'package:koin/screens/views/kommunity/models/post.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart'; // 날짜 포맷을 위해 추가 (pubspec.yaml에 intl 패키지 추가 필요)
 

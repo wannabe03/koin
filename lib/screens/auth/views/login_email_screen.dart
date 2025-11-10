@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:koin/common/const/colors.dart';
-import 'package:koin/user/views/home_screen.dart';
+import 'package:koin/screens/views/home_screen.dart';
 
 class LoginEmailScreen extends StatefulWidget {
   const LoginEmailScreen({super.key});
@@ -86,9 +86,10 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                 decoration: const InputDecoration(
                   labelText: 'Email',
                   labelStyle: TextStyle(
-                      color: PRIMARY_COLOR,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500),
+                    color: PRIMARY_COLOR,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                  ),
                   floatingLabelStyle: TextStyle(color: PRIMARY_COLOR),
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: GRAY_COLOR),
@@ -107,9 +108,10 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                 decoration: InputDecoration(
                   labelText: 'Password',
                   labelStyle: const TextStyle(
-                      color: PRIMARY_COLOR,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500),
+                    color: PRIMARY_COLOR,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                  ),
                   floatingLabelStyle: const TextStyle(color: PRIMARY_COLOR),
                   enabledBorder: const UnderlineInputBorder(
                     borderSide: BorderSide(color: GRAY_COLOR),
@@ -136,20 +138,22 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: isButtonEnabled
-                      ? () {
-                          Navigator.of(context).pushAndRemoveUntil(
-                            MaterialPageRoute(
-                              builder: (context) => HomeScreen(),
-                            ),
-                            (route) => false,
-                          );
-                        }
-                      : null,
+                  onPressed:
+                      isButtonEnabled
+                          ? () {
+                            Navigator.of(context).pushAndRemoveUntil(
+                              MaterialPageRoute(
+                                builder: (context) => HomeScreen(),
+                              ),
+                              (route) => false,
+                            );
+                          }
+                          : null,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: isButtonEnabled
-                        ? PRIMARY_COLOR
-                        : GRAY_COLOR.withOpacity(0.3),
+                    backgroundColor:
+                        isButtonEnabled
+                            ? PRIMARY_COLOR
+                            : GRAY_COLOR.withOpacity(0.3),
                     foregroundColor:
                         isButtonEnabled ? WHITE_COLOR : BLACK_COLOR,
                     minimumSize: const Size(double.infinity, 52),
@@ -208,5 +212,3 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
     );
   }
 }
-
-

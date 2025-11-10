@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:koin/common/const/colors.dart';
-import 'package:koin/user/views/auth/widgets/selection_section.dart';
-import 'package:koin/user/views/auth/views/signup_personal_details_screen.dart';
+import 'package:koin/screens/auth/widgets/selection_section.dart';
+import 'package:koin/screens/auth/views/signup_personal_details_screen.dart';
 
 class CategorySelectionScreen extends StatefulWidget {
   final String selectedNationality;
@@ -18,7 +18,8 @@ class CategorySelectionScreen extends StatefulWidget {
   });
 
   @override
-  State<CategorySelectionScreen> createState() => _CategorySelectionScreenState();
+  State<CategorySelectionScreen> createState() =>
+      _CategorySelectionScreenState();
 }
 
 class _CategorySelectionScreenState extends State<CategorySelectionScreen> {
@@ -28,24 +29,55 @@ class _CategorySelectionScreenState extends State<CategorySelectionScreen> {
 
   final List<String> _categories = ['생활정보', '관광', '법', '일자리', '결혼'];
   final List<String> _regions = [
-    '서울','부산','대전','광주','대구','경기도','강원도','충청북도','충청남도','전라북도','전라남도','경상북도','경상남도','제주도','울산'
+    '서울',
+    '부산',
+    '대전',
+    '광주',
+    '대구',
+    '경기도',
+    '강원도',
+    '충청북도',
+    '충청남도',
+    '전라북도',
+    '전라남도',
+    '경상북도',
+    '경상남도',
+    '제주도',
+    '울산',
   ];
   final List<String> _cultures = [
-    '카페','한식','한옥','전통','공예','Game','한국어','K-pop','Music','Movie','Drama','Sport','Museum','대학생','Band','Photo','Book'
+    '카페',
+    '한식',
+    '한옥',
+    '전통',
+    '공예',
+    'Game',
+    '한국어',
+    'K-pop',
+    'Music',
+    'Movie',
+    'Drama',
+    'Sport',
+    'Museum',
+    '대학생',
+    'Band',
+    'Photo',
+    'Book',
   ];
 
   void _goToNextStep() {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => PersonalDetailsScreen(
-          selectedNationality: widget.selectedNationality,
-          selectedLanguage: widget.selectedLanguage,
-          selectedResidenceType: widget.selectedResidenceType,
-          selectedResidencePeriod: widget.selectedResidencePeriod,
-          selectedCategories: _selectedCategories,
-          selectedRegions: _selectedRegions,
-          selectedCultures: _selectedCultures,
-        ),
+        builder:
+            (context) => PersonalDetailsScreen(
+              selectedNationality: widget.selectedNationality,
+              selectedLanguage: widget.selectedLanguage,
+              selectedResidenceType: widget.selectedResidenceType,
+              selectedResidencePeriod: widget.selectedResidencePeriod,
+              selectedCategories: _selectedCategories,
+              selectedRegions: _selectedRegions,
+              selectedCultures: _selectedCultures,
+            ),
       ),
     );
   }
@@ -82,16 +114,18 @@ class _CategorySelectionScreenState extends State<CategorySelectionScreen> {
                   RichText(
                     text: const TextSpan(
                       style: TextStyle(
-                          fontFamily: 'Pretendard',
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600,
-                          color: BLACK_COLOR,
-                          height: 1.4),
+                        fontFamily: 'Pretendard',
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                        color: BLACK_COLOR,
+                        height: 1.4,
+                      ),
                       children: <TextSpan>[
                         TextSpan(text: '내가 관심 있는 '),
                         TextSpan(
-                            text: '한국 관련 키워드',
-                            style: TextStyle(color: PRIMARY_COLOR)),
+                          text: '한국 관련 키워드',
+                          style: TextStyle(color: PRIMARY_COLOR),
+                        ),
                         TextSpan(text: '를\n자유롭게 선택해주세요.'),
                       ],
                     ),
@@ -161,11 +195,14 @@ class _CategorySelectionScreenState extends State<CategorySelectionScreen> {
                       borderRadius: BorderRadius.circular(26),
                     ),
                   ),
-                  child: const Text('Next',
-                      style: TextStyle(
-                          fontFamily: 'Pretendard',
-                          fontSize: 18,
-                          fontWeight: FontWeight.w400)),
+                  child: const Text(
+                    'Next',
+                    style: TextStyle(
+                      fontFamily: 'Pretendard',
+                      fontSize: 18,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -175,5 +212,3 @@ class _CategorySelectionScreenState extends State<CategorySelectionScreen> {
     );
   }
 }
-
-
