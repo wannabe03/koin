@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'custom_icon_button.dart';
 import 'package:flutter_svg/svg.dart';
-import '../../user/views/koin/views/search_screen.dart';
+import '../../screens/views/koin/views/search_screen.dart';
 
 AppBar customAppBar(BuildContext context, {Function(int)? onTabSelected}) {
   return AppBar(
@@ -10,10 +10,7 @@ AppBar customAppBar(BuildContext context, {Function(int)? onTabSelected}) {
     automaticallyImplyLeading: false,
     title: Row(
       children: [
-        Image.asset(
-          'asset/img/icon/AppBar_Icon.png',
-          width: 32,
-        ),
+        Image.asset('asset/img/icon/AppBar_Icon.png', width: 32),
         const SizedBox(width: 8),
         const Text(
           'Koin',
