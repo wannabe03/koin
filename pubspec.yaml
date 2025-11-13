@@ -41,6 +41,7 @@ dependencies:
   freezed: ^3.2.3
   riverpod: ^2.6.1
   riverpod_annotation: ^2.6.1
+  http: ^1.6.0
 
 dev_dependencies:
   flutter_test:
