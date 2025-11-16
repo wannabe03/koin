@@ -38,8 +38,8 @@ class SplashScreenUI extends StatelessWidget {
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [PRIMARY_COLOR, SPLASH_COLOR_MIDDLE, SECONDARY_COLOR],
-            begin: Alignment.topLeft,
+            colors: [PRIMARY_COLOR, SECONDARY_COLOR],
+            begin: FractionalOffset(-0.2, 0.7),
             end: Alignment.bottomRight,
           ),
         ),
@@ -71,23 +71,25 @@ class SplashScreenUI extends StatelessWidget {
               Center(
                 child: RichText(
                   textAlign: TextAlign.center,
-                  text: const TextSpan(
-                    style: TextStyle(
-                      fontFamily: 'Pretendard',
-                      fontSize: 16,
-                      color: WHITE_COLOR,
-                      fontWeight: FontWeight.w400,
-                      height: 1.5,
-                    ),
+                  text: TextSpan(
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodyLarge?.copyWith(color: Colors.white),
                     children: <TextSpan>[
                       TextSpan(
                         text: '한국 안의 외국인',
-                        style: TextStyle(fontWeight: FontWeight.w400),
+                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                       TextSpan(text: '을 위한 커뮤니티 서비스, '),
                       TextSpan(
                         text: '코인',
-                        style: TextStyle(fontWeight: FontWeight.w400),
+                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                       TextSpan(text: '.'),
                     ],

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:koin/screen/user/kommunity/model/post.dart';
 import 'package:koin/screen/user/kommunity/widget/board/filter_button.dart';
 import 'package:koin/screen/user/kommunity/widget/board/search_header.dart';
-import 'package:koin/screen/user/kommunity/view/post_detail_screen.dart';
 
 class BoardScreen extends StatefulWidget {
   final String boardName;
@@ -48,26 +47,18 @@ class _BoardScreenState extends State<BoardScreen> {
     '싱가폴',
   ];
 
-  final List<Post> _allPostsData = const [
+  final List<Post> _posts = const [
     Post(
       title: '존댓말',
       content: '저만 아직도 어려운가요?',
       timeAgo: '1 minute ago',
       flag: '🇩🇪',
-      author: 'Koiny',
-      date: '08/06 20:25',
-      likes: 0, // 0으로 초기화
-      comments: 0, // 0으로 초기화
     ),
     Post(
       title: '교환학생',
       content: '카레부어스트 공급하실분?',
       timeAgo: '1 minute ago',
       flag: '🇩🇪',
-      author: 'Currywurst Fan',
-      date: '08/06 20:24',
-      likes: 0,
-      comments: 0,
     ),
     Post(
       title: '네덜란드 분들께',
@@ -75,84 +66,26 @@ class _BoardScreenState extends State<BoardScreen> {
       timeAgo: '1 minute ago',
       flag: '🇳🇱',
       imageUrl: 'https://picsum.photos/id/43/150/150',
-      author: 'RockFan',
-      date: '08/06 20:22',
-      likes: 0,
-      comments: 0,
     ),
     Post(
       title: '김치찌개 레시피',
       content: '독일식으로 바꿔봤습니다!...',
       timeAgo: '1 minute ago',
       flag: '🇩🇪',
-      author: 'Chef',
-      date: '08/06 20:21',
-      likes: 0,
-      comments: 0,
     ),
     Post(
       title: '안녕하세요',
       content: '학기 중에 일본 가시는 분 계신가요?',
       timeAgo: '1 minute ago',
       flag: '🇯🇵',
-      author: '여행가고싶다',
-      date: '08/06 20:20',
-      likes: 0,
-      comments: 0,
     ),
     Post(
       title: '제주도',
       content: '너무 좋다~!!',
       timeAgo: '1 minute ago',
       flag: '🇰🇷',
-      author: '제주도민',
-      date: '08/06 20:19',
-      likes: 0,
-      comments: 0,
     ),
   ];
-
-  final List<Post> _foodPostsData = const [
-    Post(
-      title: '노원구 맛집',
-      content: '여기 정말 맛있어요!',
-      timeAgo: '5 minute ago',
-      flag: '🇰🇷',
-      author: '미식가',
-      date: '08/05 18:00',
-      likes: 0,
-      comments: 0,
-    ),
-    Post(
-      title: '공릉동 닭한마리 후기',
-      content: '외국인 친구 데려갔는데 너무 좋아하네요',
-      timeAgo: '10 minute ago',
-      flag: '🇺🇸',
-      imageUrl: 'https://picsum.photos/id/102/150/150',
-      author: '서울테크',
-      date: '08/05 17:50',
-      likes: 0,
-      comments: 0,
-    ),
-  ];
-
-  List<Post> _displayPosts = [];
-  late final bool _isAllBoardView;
-
-  @override
-  void initState() {
-    super.initState();
-    _isAllBoardView = widget.boardName == '전체 게시판';
-
-    if (_isAllBoardView) {
-      _displayPosts = _allPostsData;
-      _selectedFilter = '최신순';
-    } else if (widget.boardName == '맛집 게시판') {
-      _displayPosts = _foodPostsData;
-    } else {
-      _displayPosts = _allPostsData;
-    }
-  }
 
   Future<void> _showFilterSelectionModal(
     List<String> options,
@@ -313,70 +246,57 @@ class _BoardScreenState extends State<BoardScreen> {
             Container(height: 8, color: const Color(0xFFF7F7F7)),
             Expanded(
               child: ListView.separated(
-                itemCount: _displayPosts.length,
+                itemCount: _posts.length,
                 itemBuilder: (context, index) {
-                  final post = _displayPosts[index];
-                  return InkWell(
-                    onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder:
-                              (context) => PostDetailScreen(
-                                post: post,
-                                boardName: widget.boardName,
-                              ),
-                        ),
-                      );
-                    },
-                    child: ListTile(
-                      contentPadding: const EdgeInsets.symmetric(
-                        vertical: 14.0,
-                        horizontal: 16.0,
-                      ),
-                      title: Text(
-                        post.title,
-                        style: const TextStyle(fontWeight: FontWeight.w900),
-                      ),
-                      subtitle: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SizedBox(height: 4),
-                          Text(
-                            post.content,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                            style: const TextStyle(fontWeight: FontWeight.w700),
-                          ),
-                          const SizedBox(height: 8),
-                          Row(
-                            children: [
-                              Text(
-                                post.timeAgo,
-                                style: TextStyle(
-                                  color: Colors.grey[600],
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                              const SizedBox(width: 8),
-                              Text(post.flag),
-                            ],
-                          ),
-                        ],
-                      ),
-                      trailing:
-                          post.imageUrl != null
-                              ? ClipRRect(
-                                borderRadius: BorderRadius.circular(8.0),
-                                child: Image.network(
-                                  post.imageUrl!,
-                                  width: 60,
-                                  height: 60,
-                                  fit: BoxFit.cover,
-                                ),
-                              )
-                              : null,
+                  final post = _posts[index];
+                  return ListTile(
+                    contentPadding: const EdgeInsets.symmetric(
+                      vertical: 14.0,
+                      horizontal: 16.0,
                     ),
+                    title: Text(
+                      post.title,
+                      style: const TextStyle(fontWeight: FontWeight.w900),
+                    ),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(height: 4),
+                        Text(
+                          post.content,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                          style: const TextStyle(fontWeight: FontWeight.w700),
+                        ),
+                        const SizedBox(height: 8),
+                        Row(
+                          children: [
+                            Text(
+                              post.timeAgo,
+                              style: TextStyle(
+                                color: Colors.grey[600],
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            Text(post.flag),
+                          ],
+                        ),
+                      ],
+                    ),
+                    trailing:
+                        post.imageUrl != null
+                            ? ClipRRect(
+                              borderRadius: BorderRadius.circular(8.0),
+                              child: Image.network(
+                                post.imageUrl!,
+                                width: 60,
+                                height: 60,
+                                fit: BoxFit.cover,
+                              ),
+                            )
+                            : null,
                   );
                 },
                 separatorBuilder: (context, index) {
@@ -450,22 +370,19 @@ class _BoardScreenState extends State<BoardScreen> {
                   });
                 },
               ),
-              if (!_isAllBoardView) ...[
-                FilterButton(
-                  label: '지역',
-                  isSelected:
-                      _selectedFilter == '지역' || _selectedRegion != null,
-                  displayText: _selectedRegion ?? '지역',
-                  onTap: () => _showFilterSelectionModal(_regions, '지역'),
-                ),
-                FilterButton(
-                  label: '국적',
-                  isSelected:
-                      _selectedFilter == '국적' || _selectedNationality != null,
-                  displayText: _selectedNationality ?? '국적',
-                  onTap: () => _showFilterSelectionModal(_nationalities, '국적'),
-                ),
-              ],
+              FilterButton(
+                label: '지역',
+                isSelected: _selectedFilter == '지역' || _selectedRegion != null,
+                displayText: _selectedRegion ?? '지역',
+                onTap: () => _showFilterSelectionModal(_regions, '지역'),
+              ),
+              FilterButton(
+                label: '국적',
+                isSelected:
+                    _selectedFilter == '국적' || _selectedNationality != null,
+                displayText: _selectedNationality ?? '국적',
+                onTap: () => _showFilterSelectionModal(_nationalities, '국적'),
+              ),
             ],
           ),
         ],

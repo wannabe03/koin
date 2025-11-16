@@ -18,8 +18,8 @@ class MyScreen extends StatelessWidget {
             end: Alignment.bottomCenter,
             stops: const [0.7212, 1.0],
             colors: [
-              Colors.black.withOpacity(0.0),
-              Colors.black.withOpacity(0.05),
+              Colors.black.withValues(alpha: 0.0),
+              Colors.black.withValues(alpha: 0.05),
             ],
           ),
         ),
@@ -96,12 +96,13 @@ class _KoinaProfileCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(16.0),
+
       decoration: BoxDecoration(
         color: const Color(0xFFF0F6FF),
         borderRadius: BorderRadius.circular(16.0),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -133,13 +134,14 @@ class _KoinaProfileCard extends StatelessWidget {
                       const SizedBox(width: 4),
                       Image.network(
                         'https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Flag_of_Germany.svg/160px-Flag_of_Germany.svg.png',
-                        width: 20,
+                        width: 16,
                       ),
                     ],
                   ),
                   const Text(
                     'Exchange student',
                     style: TextStyle(fontSize: 12, color: Colors.grey),
+                    overflow: TextOverflow.fade,
                   ),
                 ],
               ),
@@ -181,7 +183,7 @@ class _K01nProfileCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(16.0),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),

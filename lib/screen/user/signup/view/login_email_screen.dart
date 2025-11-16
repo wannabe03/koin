@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:koin/common/const/colors.dart';
 import 'package:koin/screen/user/home_screen.dart';
+import 'package:koin/screen/user/signup/view/signup_reset_password_screen.dart';
 
 class LoginEmailScreen extends StatefulWidget {
   const LoginEmailScreen({super.key});
@@ -185,7 +186,14 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                     ),
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ResetPasswordScreen(),
+                        ),
+                      );
+                    },
                     style: TextButton.styleFrom(
                       padding: EdgeInsets.zero,
                       minimumSize: const Size(50, 30),

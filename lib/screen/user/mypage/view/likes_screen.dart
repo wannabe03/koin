@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
-class ScrappedKuration {
+class LikedKuration {
   final String imageUrl;
   final String title;
-  ScrappedKuration({required this.imageUrl, required this.title});
+  LikedKuration({required this.imageUrl, required this.title});
 }
 
-class ScrappedCommunityPost {
+class LikedCommunityPost {
   final String title;
   final String contentPreview;
   final String timeAgo;
   final String countryFlag;
-  ScrappedCommunityPost({
+  LikedCommunityPost({
     required this.title,
     required this.contentPreview,
     required this.timeAgo,
@@ -19,50 +19,50 @@ class ScrappedCommunityPost {
   });
 }
 
-class ScrapsScreen extends StatefulWidget {
-  const ScrapsScreen({super.key});
+class LikesScreen extends StatefulWidget {
+  const LikesScreen({super.key});
 
   @override
-  State<ScrapsScreen> createState() => _ScrapsScreenState();
+  State<LikesScreen> createState() => _LikesScreenState();
 }
 
-class _ScrapsScreenState extends State<ScrapsScreen> {
+class _LikesScreenState extends State<LikesScreen> {
   bool _isLoading = true;
-  List<ScrappedKuration> _scrappedKurations = [];
-  List<ScrappedCommunityPost> _scrappedCommunityPosts = [];
+  List<LikedKuration> _likedKurations = [];
+  List<LikedCommunityPost> _likedCommunityPosts = [];
 
   @override
   void initState() {
     super.initState();
-    _loadScrapData();
+    _loadLikedData();
   }
 
-  Future<void> _loadScrapData() async {
+  Future<void> _loadLikedData() async {
     await Future.delayed(const Duration(seconds: 1));
 
     setState(() {
-      _scrappedKurations = [
-        ScrappedKuration(
+      _likedKurations = [
+        LikedKuration(
           imageUrl:
-              'https://images.unsplash.com/photo-1541167760496-1608856e77c0?fit=crop&w=300&q=80',
-          title: 'Café, in 강릉 5',
+              'https://images.unsplash.com/photo-1571008782635-f86a14c3d0f1?fit=crop&w=300&q=80',
+          title: 'Fall, Farms',
         ),
-        ScrappedKuration(
+        LikedKuration(
           imageUrl:
-              'https://images.unsplash.com/photo-1514933651103-005eec06c04b?fit=crop&w=300&q=80',
-          title: 'Bars',
+              'https://images.unsplash.com/photo-1521320226578-1f165a2cee83?fit=crop&w=300&q=80',
+          title: 'Tips for...',
         ),
       ];
 
-      _scrappedCommunityPosts = [
-        ScrappedCommunityPost(
+      _likedCommunityPosts = [
+        LikedCommunityPost(
           title: 'Best restaurants in Gangneung',
           contentPreview:
               'Im a dutch who have lived in gangneung for 5 years...',
           timeAgo: '1 minute ago',
           countryFlag: '🇳🇱',
         ),
-        ScrappedCommunityPost(
+        LikedCommunityPost(
           title: 'My Bucketlist for summer',
           contentPreview: 'Going Gangneung',
           timeAgo: '1 minute ago',
@@ -85,7 +85,7 @@ class _ScrapsScreenState extends State<ScrapsScreen> {
         title: Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: const Text(
-            'Scraps',
+            'Likes',
             style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,
@@ -179,10 +179,10 @@ class _ScrapsScreenState extends State<ScrapsScreen> {
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: 16),
-        itemCount: _scrappedKurations.length,
+        itemCount: _likedKurations.length,
         itemBuilder: (context, index) {
-          final kuration = _scrappedKurations[index];
-          return _ScrappedKurationCard(
+          final kuration = _likedKurations[index];
+          return _LikedKurationCard(
             imageUrl: kuration.imageUrl,
             title: kuration.title,
           );
@@ -196,10 +196,10 @@ class _ScrapsScreenState extends State<ScrapsScreen> {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-      itemCount: _scrappedCommunityPosts.length,
+      itemCount: _likedCommunityPosts.length,
       itemBuilder: (context, index) {
-        final post = _scrappedCommunityPosts[index];
-        return _ScrappedCommunityPostItem(
+        final post = _likedCommunityPosts[index];
+        return _LikedCommunityPostItem(
           title: post.title,
           contentPreview: post.contentPreview,
           timeAgo: post.timeAgo,
@@ -210,11 +210,11 @@ class _ScrapsScreenState extends State<ScrapsScreen> {
   }
 }
 
-class _ScrappedKurationCard extends StatelessWidget {
+class _LikedKurationCard extends StatelessWidget {
   final String imageUrl;
   final String title;
 
-  const _ScrappedKurationCard({required this.imageUrl, required this.title});
+  const _LikedKurationCard({required this.imageUrl, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -232,55 +232,39 @@ class _ScrappedKurationCard extends StatelessWidget {
         ),
         color: Colors.grey.shade300,
       ),
-      child: Stack(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
-              gradient: LinearGradient(
-                begin: Alignment.bottomCenter,
-                end: Alignment.center,
-                colors: [Colors.black.withOpacity(0.7), Colors.transparent],
-              ),
-            ),
-            child: Align(
-              alignment: Alignment.bottomLeft,
-              child: Text(
-                title,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                ),
-              ),
+      child: Container(
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16),
+          gradient: LinearGradient(
+            begin: Alignment.bottomCenter,
+            end: Alignment.center,
+            colors: [Colors.black.withValues(alpha: 0.7), Colors.transparent],
+          ),
+        ),
+        child: Align(
+          alignment: Alignment.bottomLeft,
+          child: Text(
+            title,
+            style: const TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
             ),
           ),
-          Positioned(
-            top: 12,
-            right: 12,
-            child: Container(
-              padding: const EdgeInsets.all(4),
-              decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.5),
-                borderRadius: BorderRadius.circular(4),
-              ),
-              child: const Icon(Icons.bookmark, color: Colors.white, size: 20),
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
 }
 
-class _ScrappedCommunityPostItem extends StatelessWidget {
+class _LikedCommunityPostItem extends StatelessWidget {
   final String title;
   final String contentPreview;
   final String timeAgo;
   final String countryFlag;
 
-  const _ScrappedCommunityPostItem({
+  const _LikedCommunityPostItem({
     required this.title,
     required this.contentPreview,
     required this.timeAgo,

@@ -5,7 +5,7 @@ import 'package:koin/screen/user/koin/view/koin_screen.dart';
 import 'package:koin/screen/user/kuration/view/kuration_screen.dart';
 import 'package:koin/screen/user/kommunity/view/kommunity_screen.dart';
 import 'package:koin/screen/user/kamera/view/kamera_screen.dart';
-import 'package:koin/screen/user/my/view/my_screen.dart';
+import 'package:koin/screen/user/mypage/view/my_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
