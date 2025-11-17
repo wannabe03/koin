@@ -3,7 +3,6 @@ import 'package:koin/common/const/colors.dart';
 import 'package:koin/screen/user/signup/view/gradient_container.dart';
 import 'package:koin/screen/user/signup/view/terms_of_use.dart';
 import 'package:koin/screen/user/signup/widget/guided_textbutton.dart';
-import 'package:koin/screen/user/signup/widget/page_indicator.dart';
 import 'package:koin/screen/user/signup/view/signup_security_code_screen.dart';
 
 class PersonalDetailsScreen extends StatefulWidget {
@@ -17,6 +16,17 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
   final _emailController = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+    _emailController.addListener(_updateState);
+  }
+
+  // TODO: fix to check if all inputs are not empty
+  void _updateState() {
+    setState(() {});
+  }
+
+  @override
   void dispose() {
     _emailController.dispose();
     super.dispose();
@@ -27,56 +37,60 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
     String? hintText,
     TextEditingController? controller,
   }) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          label,
-          style: const TextStyle(
-            color: PRIMARY_COLOR,
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        TextField(
-          controller: controller,
-          style: const TextStyle(color: GrayScale.black, fontSize: 18),
-          decoration: InputDecoration(
-            hintText: hintText,
-            hintStyle: const TextStyle(color: Colors.grey),
-            enabledBorder: const UnderlineInputBorder(
-              borderSide: BorderSide(color: PRIMARY_COLOR),
-            ),
-            focusedBorder: const UnderlineInputBorder(
-              borderSide: BorderSide(color: PRIMARY_COLOR),
+    return Padding(
+      padding: EdgeInsetsGeometry.symmetric(vertical: 11),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            label,
+            style: const TextStyle(
+              color: PRIMARY_COLOR,
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
             ),
           ),
-        ),
-        const SizedBox(height: 24),
-      ],
+          TextField(
+            controller: controller,
+            style: const TextStyle(color: GrayScale.black, fontSize: 18),
+            decoration: InputDecoration(
+              hintText: hintText,
+              hintStyle: const TextStyle(color: Colors.grey),
+              enabledBorder: const UnderlineInputBorder(
+                borderSide: BorderSide(color: PRIMARY_COLOR),
+              ),
+              focusedBorder: const UnderlineInputBorder(
+                borderSide: BorderSide(color: PRIMARY_COLOR),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
   void _onPressed() {
-    {
-      final email = _emailController.text;
-      if (email.isEmpty || !email.contains('@')) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(const SnackBar(content: Text('올바른 이메일을 입력해주세요.')));
-        return;
-      }
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => SecurityCodeScreen(email: email),
-        ),
-      );
+    debugPrint("email: ${_emailController.text}");
+    final email = _emailController.text;
+    if (email.isEmpty || !validateEmail(_emailController.text)) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('올바른 이메일을 입력해주세요.')));
+      return;
     }
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (context) => SecurityCodeScreen(email: email)),
+    );
+  }
+
+  bool validateEmail(String email) {
+    return RegExp(
+      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
+    ).hasMatch(email);
   }
 
   @override
   Widget build(BuildContext context) {
-    // TODO: fix to check if all inputs are not empty
     final bool isButtonEnabled = _emailController.text.isNotEmpty;
     return Scaffold(
       backgroundColor: GrayScale.white,
@@ -107,10 +121,11 @@ class _PersonalDetailsScreenState extends State<PersonalDetailsScreen> {
             ),
             const Spacer(flex: 2),
             _buildTextField(label: 'First name'),
-            _buildTextField(label: 'Surname'),
+            _buildTextField(label: 'Last name'),
             _buildTextField(label: 'Birthday', hintText: 'DD/MM/YYYY'),
             _buildTextField(label: 'Gender'),
             _buildTextField(label: 'Email', controller: _emailController),
+            const Spacer(flex: 2),
             GuidedTextButton(
               nextRoute: MaterialPageRoute(
                 builder: (context) => TermsOfUseScreen(),
