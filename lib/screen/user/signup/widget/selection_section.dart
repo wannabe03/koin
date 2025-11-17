@@ -20,40 +20,46 @@ class SelectionSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(title,
-            style: const TextStyle(
-                fontFamily: 'Pretendard',
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-                color: BLACK_COLOR)),
+        Text(
+          title,
+          style: const TextStyle(
+            fontFamily: 'Pretendard',
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+            color: GrayScale.black,
+          ),
+        ),
         const SizedBox(height: 15),
         Wrap(
           spacing: 10.0,
           runSpacing: 10.0,
-          children: options.map((option) {
-            final bool isSelected = selectedOptions.contains(option);
-            return ChoiceChip(
-              label: Text(option),
-              selected: isSelected,
-              showCheckmark: false,
-              onSelected: (selected) => onToggle(option),
-              selectedColor: PRIMARY_COLOR,
-              labelStyle: TextStyle(
-                  fontFamily: 'Pretendard',
-                  color: isSelected ? WHITE_COLOR : PRIMARY_COLOR,
-                  fontSize: 16),
-              backgroundColor: Colors.white,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-                side: const BorderSide(color: PRIMARY_COLOR),
-              ),
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-            );
-          }).toList(),
+          children:
+              options.map((option) {
+                final bool isSelected = selectedOptions.contains(option);
+                return ChoiceChip(
+                  label: Text(option),
+                  selected: isSelected,
+                  showCheckmark: false,
+                  onSelected: (selected) => onToggle(option),
+                  selectedColor: PRIMARY_COLOR,
+                  labelStyle: TextStyle(
+                    fontFamily: 'Pretendard',
+                    color: isSelected ? GrayScale.white : PRIMARY_COLOR,
+                    fontSize: 16,
+                  ),
+                  backgroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    side: const BorderSide(color: PRIMARY_COLOR),
+                  ),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 15,
+                    vertical: 10,
+                  ),
+                );
+              }).toList(),
         ),
       ],
     );
   }
 }
-
-

@@ -43,7 +43,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
         TextField(
           controller: controller,
           obscureText: isObscured,
-          style: const TextStyle(color: BLACK_COLOR, fontSize: 18),
+          style: const TextStyle(color: GrayScale.black, fontSize: 18),
           decoration: InputDecoration(
             enabledBorder: const UnderlineInputBorder(
               borderSide: BorderSide(color: PRIMARY_COLOR),
@@ -69,19 +69,19 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: WHITE_COLOR,
+      backgroundColor: GrayScale.white,
       appBar: AppBar(
         backgroundColor: PRIMARY_COLOR,
         elevation: 0,
         toolbarHeight: 80,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: WHITE_COLOR),
+          icon: const Icon(Icons.arrow_back_ios, color: GrayScale.white),
           onPressed: () => Navigator.of(context).pop(),
         ),
         title: const Text(
           'Reset My Password',
           style: TextStyle(
-            color: WHITE_COLOR,
+            color: GrayScale.white,
             fontWeight: FontWeight.bold,
             fontSize: 24,
           ),
@@ -124,7 +124,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: PRIMARY_COLOR,
-                  foregroundColor: WHITE_COLOR,
+                  foregroundColor: GrayScale.white,
                   minimumSize: const Size(double.infinity, 52),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(26),

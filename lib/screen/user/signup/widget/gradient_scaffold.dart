@@ -16,7 +16,7 @@ class GradientScaffold extends StatelessWidget {
     this.appBar,
     required this.child,
     this.padding,
-    this.colors = const [GRADIENT_COLOR, WHITE_COLOR],
+    this.colors = const [GRADIENT_COLOR, GrayScale.white],
     this.stops = const [0.0, 0.4],
     this.begin = Alignment.topCenter,
     this.end = Alignment.bottomCenter,
@@ -37,13 +37,8 @@ class GradientScaffold extends StatelessWidget {
             stops: stops,
           ),
         ),
-        child: Padding(
-          padding: padding ?? EdgeInsets.zero,
-          child: child,
-        ),
+        child: Padding(padding: padding ?? EdgeInsets.zero, child: child),
       ),
     );
   }
 }
-
-

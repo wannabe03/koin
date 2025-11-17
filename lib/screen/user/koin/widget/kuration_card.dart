@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:koin/common/const/colors.dart';
 
 class KurationCard extends StatelessWidget {
   final String assetPath;
@@ -32,7 +33,7 @@ class KurationCard extends StatelessWidget {
                   end: Alignment.bottomCenter,
                   colors: [
                     Colors.black.withValues(alpha: 0.00),
-                    Colors.black.withValues(alpha: 0.50),
+                    GrayScale.black_50,
                   ],
                 ),
               ),

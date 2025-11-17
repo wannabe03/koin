@@ -26,7 +26,7 @@ class MenuIconButton extends StatelessWidget {
               width: 45,
               height: 45,
               decoration: BoxDecoration(
-                color: WHITE_COLOR,
+                color: GrayScale.white,
                 borderRadius: BorderRadius.circular(9),
                 boxShadow: [
                   BoxShadow(

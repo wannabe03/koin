@@ -29,8 +29,9 @@ TextTheme koinTextTheme(BuildContext context) {
     ),
     headlineLarge: TextStyle(
       fontFamily: "Pretendard",
-      fontWeight: FontWeight.w500,
+      fontWeight: FontWeight.w600,
       fontSize: 24,
+      height: 32 / 24,
       letterSpacing: 24 * -0.02,
     ),
     headlineMedium: TextStyle(

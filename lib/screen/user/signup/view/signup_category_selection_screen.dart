@@ -70,13 +70,13 @@ class _CategorySelectionScreenState extends State<CategorySelectionScreen> {
       MaterialPageRoute(
         builder:
             (context) => PersonalDetailsScreen(
-              selectedNationality: widget.selectedNationality,
-              selectedLanguage: widget.selectedLanguage,
-              selectedResidenceType: widget.selectedResidenceType,
-              selectedResidencePeriod: widget.selectedResidencePeriod,
-              selectedCategories: _selectedCategories,
-              selectedRegions: _selectedRegions,
-              selectedCultures: _selectedCultures,
+              // selectedNationality: widget.selectedNationality,
+              // selectedLanguage: widget.selectedLanguage,
+              // selectedResidenceType: widget.selectedResidenceType,
+              // selectedResidencePeriod: widget.selectedResidencePeriod,
+              // selectedCategories: _selectedCategories,
+              // selectedRegions: _selectedRegions,
+              // selectedCultures: _selectedCultures,
             ),
       ),
     );
@@ -91,14 +91,14 @@ class _CategorySelectionScreenState extends State<CategorySelectionScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: BLACK_COLOR),
+          icon: const Icon(Icons.arrow_back_ios, color: GrayScale.black),
           onPressed: () => Navigator.of(context).pop(),
         ),
       ),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [GRADIENT_COLOR, WHITE_COLOR],
+            colors: [GRADIENT_COLOR, GrayScale.white],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             stops: [0.0, 0.4],
@@ -117,7 +117,7 @@ class _CategorySelectionScreenState extends State<CategorySelectionScreen> {
                         fontFamily: 'Pretendard',
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
-                        color: BLACK_COLOR,
+                        color: GrayScale.black,
                         height: 1.4,
                       ),
                       children: <TextSpan>[
@@ -189,7 +189,7 @@ class _CategorySelectionScreenState extends State<CategorySelectionScreen> {
                   onPressed: _goToNextStep,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: PRIMARY_COLOR,
-                    foregroundColor: WHITE_COLOR,
+                    foregroundColor: GrayScale.white,
                     minimumSize: const Size(double.infinity, 52),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(26),

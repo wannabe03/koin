@@ -132,7 +132,7 @@ class _KoinBannerState extends State<KoinBanner> {
                 Text(
                   widget.banners[_currentPage].category,
                   style: const TextStyle(
-                    color: WHITE_COLOR,
+                    color: GrayScale.white,
                     fontFamily: 'GapyeongHanseokbong',
                     fontSize: 14,
                     fontWeight: FontWeight.w700,
@@ -144,7 +144,7 @@ class _KoinBannerState extends State<KoinBanner> {
                 Text(
                   widget.banners[_currentPage].title,
                   style: const TextStyle(
-                    color: WHITE_COLOR,
+                    color: GrayScale.white,
                     fontFamily: 'Pretendard',
                     fontSize: 32,
                     fontWeight: FontWeight.w700,
@@ -158,7 +158,7 @@ class _KoinBannerState extends State<KoinBanner> {
                     Text(
                       widget.banners[_currentPage].subtitle,
                       style: const TextStyle(
-                        color: WHITE_COLOR,
+                        color: GrayScale.white,
                         fontFamily: 'Pretendard',
                         fontSize: 16,
                         fontWeight: FontWeight.w500,

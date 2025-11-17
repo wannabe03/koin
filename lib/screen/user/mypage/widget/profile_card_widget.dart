@@ -19,7 +19,7 @@ class ProfileCardWidget extends StatelessWidget {
                 width: MediaQuery.of(context).size.width * 0.55,
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: const Color(0x80CEE1FF), 
+                  color: const Color(0x80CEE1FF),
                   borderRadius: BorderRadius.circular(18),
                 ),
                 child: Column(
@@ -30,7 +30,7 @@ class ProfileCardWidget extends StatelessWidget {
                       children: [
                         CircleAvatar(
                           radius: 24,
-                          backgroundColor: WHITE_COLOR,
+                          backgroundColor: GrayScale.white,
                           child: Image.asset(
                             'asset/img/icon/my_screen/People.png',
                           ),
@@ -88,10 +88,7 @@ class ProfileCardWidget extends StatelessWidget {
                       ],
                     ),
                     const Spacer(),
-                    Container(
-                      height: 1,
-                      color: const Color(0xFFCEE1FF),
-                    ),
+                    Container(height: 1, color: const Color(0xFFCEE1FF)),
                     const SizedBox(height: 12),
                     Row(
                       children: [
@@ -129,7 +126,7 @@ class ProfileCardWidget extends StatelessWidget {
                 width: MediaQuery.of(context).size.width * 0.55,
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
-                  color: const Color(0x80CEE1FF), 
+                  color: const Color(0x80CEE1FF),
                   borderRadius: BorderRadius.circular(18),
                 ),
                 child: Column(
@@ -140,7 +137,7 @@ class ProfileCardWidget extends StatelessWidget {
                       children: [
                         CircleAvatar(
                           radius: 24,
-                          backgroundColor: WHITE_COLOR,
+                          backgroundColor: GrayScale.white,
                           child: Image.asset(
                             'asset/img/icon/my_screen/Profile.png',
                             width: 48,
@@ -191,10 +188,7 @@ class ProfileCardWidget extends StatelessWidget {
                       ],
                     ),
                     const Spacer(),
-                    Container(
-                      height: 1,
-                      color: const Color(0xFFCEE1FF),
-                    ),
+                    Container(height: 1, color: const Color(0xFFCEE1FF)),
                     const SizedBox(height: 12),
                     Row(
                       children: [

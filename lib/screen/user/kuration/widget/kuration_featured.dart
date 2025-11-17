@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:koin/common/const/colors.dart';
 
 class KurationFeatured extends StatelessWidget {
   final PageController controller;

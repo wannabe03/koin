@@ -1,148 +1,144 @@
 import 'package:flutter/material.dart';
 import 'package:koin/common/const/colors.dart';
+import 'package:koin/screen/user/signup/view/gradient_container.dart';
 import 'package:koin/screen/user/signup/view/login_email_screen.dart';
 import 'package:koin/screen/user/signup/view/signup_info_screen.dart';
+import 'package:koin/screen/user/signup/view/signup_personal_details_screen.dart';
+import 'package:koin/screen/user/signup/view/signup_reset_password_screen.dart';
+import 'package:koin/screen/user/signup/widget/guided_textbutton.dart';
+import 'package:koin/screen/user/signup/widget/social_login_button.dart';
 
 class MainLoginScreen extends StatelessWidget {
   const MainLoginScreen({super.key});
 
+  Widget _buildLoginButtons(BuildContext context) {
+    return Column(
+      spacing: 5,
+      children: [
+        // Google login
+        SocialLoginButton(
+          label: Text(
+            "Login with Google",
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+              fontWeight: FontWeight.w500,
+              color: PRIMARY_COLOR,
+            ),
+          ),
+          hasIcon: true,
+          icon: Image.asset(
+            "asset/img/icon/google_logo.png",
+            width: 14,
+            height: 14,
+          ),
+          backgroundColor: GrayScale.white,
+          borderColor: PRIMARY_COLOR,
+          onPressed: () {},
+        ),
+
+        SocialLoginButton(
+          label: Text(
+            "Login with Kakao",
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+              fontWeight: FontWeight.w500,
+              color: GrayScale.black,
+            ),
+          ),
+          hasIcon: true,
+          icon: Image.asset(
+            "asset/img/icon/kakao_logo.png",
+            width: 14,
+            height: 14,
+          ),
+          backgroundColor: KAKAO_COLOR,
+          onPressed: () {},
+        ),
+
+        SocialLoginButton(
+          label: Text(
+            "Login with Email",
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+              fontWeight: FontWeight.w500,
+              color: GrayScale.white,
+            ),
+          ),
+          hasIcon: false,
+
+          backgroundColor: PRIMARY_COLOR,
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => const LoginEmailScreen()),
+            );
+          },
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [GRADIENT_COLOR, WHITE_COLOR],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            stops: [0, 0.4],
-          ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 40.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+    return GradientContainer(
+      hasSubmitButton: false,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          // LOGO AREA
+          const Spacer(flex: 6),
+          Column(
+            spacing: 32,
             children: [
-              const Spacer(flex: 3),
-              Image.asset('asset/img/icon/logo.png', width: 150, height: 100),
-              const SizedBox(height: 16),
-              const Text(
-                'Koin',
-                style: TextStyle(
-                  color: PRIMARY_COLOR,
-                  fontFamily: 'GapyeongHanseokbong',
-                  fontSize: 40,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-              const Spacer(flex: 3),
-              ElevatedButton.icon(
-                onPressed: () {},
-                icon: Image.asset(
-                  'asset/img/icon/google_logo.png',
-                  width: 24,
-                  height: 24,
-                ),
-                label: const Text(
-                  '구글로 로그인',
-                  style: TextStyle(
-                    fontFamily: 'Pretendard',
-                    fontSize: 14,
-                    color: PRIMARY_COLOR,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: WHITE_COLOR,
-                  foregroundColor: BLACK_COLOR,
-                  minimumSize: const Size(double.infinity, 52),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(26),
-                    side: BorderSide(color: GRAY_COLOR.withValues(alpha: 0.5)),
-                  ),
-                  elevation: 0,
-                ),
-              ),
-              const SizedBox(height: 12),
-              ElevatedButton.icon(
-                onPressed: () {},
-                icon: Image.asset(
-                  'asset/img/icon/kakao_logo.png',
-                  width: 24,
-                  height: 24,
-                ),
-                label: const Text(
-                  '카카오로 로그인',
-                  style: TextStyle(
-                    fontFamily: 'Pretendard',
-                    fontSize: 14,
-                    color: BLACK_COLOR,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: KAKAO_COLOR,
-                  foregroundColor: BLACK_COLOR,
-                  minimumSize: const Size(double.infinity, 52),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(26),
-                  ),
-                  elevation: 0,
-                ),
-              ),
-              const SizedBox(height: 12),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => const LoginEmailScreen(),
-                    ),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: PRIMARY_COLOR,
-                  foregroundColor: WHITE_COLOR,
-                  minimumSize: const Size(double.infinity, 52),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(26),
-                  ),
-                  elevation: 0,
-                ),
-                child: const Text(
-                  '이메일로 로그인',
-                  style: TextStyle(
-                    fontFamily: 'Pretendard',
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 24),
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => const SignUpInfoScreen(),
-                    ),
-                  );
-                },
-                child: const Text(
-                  '계정 생성',
-                  style: TextStyle(
-                    fontFamily: 'Pretendard',
-                    fontSize: 12,
-                    color: PRIMARY_COLOR,
-                    fontWeight: FontWeight.w600,
-                    decoration: TextDecoration.underline,
-                  ),
-                ),
-              ),
-              const Spacer(flex: 2),
+              Image.asset('asset/img/icon/logo.png', width: 168),
+              // Text(
+              //   'Koin',
+              //   style: Theme.of(
+              //     context,
+              //   ).textTheme.displayLarge?.copyWith(color: PRIMARY_COLOR),
+              // ),
             ],
           ),
-        ),
+          const Spacer(flex: 3),
+          Column(
+            spacing: 24,
+            children: [
+              // Social Login Buttons
+              _buildLoginButtons(context),
+              // SIGN UP BUTTON
+              TextButton(
+                style: TextButton.styleFrom(
+                  padding: EdgeInsets.all(0),
+                  overlayColor: Colors.transparent,
+                  elevation: 0,
+                  splashFactory: NoSplash.splashFactory,
+                  minimumSize: Size.zero,
+                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                ),
+                child: Text(
+                  "Sign Up",
+                  style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                    color: PRIMARY_COLOR,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const PersonalDetailsScreen(),
+                    ),
+                  );
+                },
+              ),
+            ],
+          ),
+          const Spacer(flex: 1),
+          // FIND MY ACCOUNT
+          GuidedTextButton(
+            guideText: "Forgot your account?",
+            label: "Find My Account",
+            nextRoute: MaterialPageRoute(
+              builder: (context) => ResetPasswordScreen(),
+            ),
+          ),
+          const Spacer(flex: 1),
+        ],
       ),
     );
   }

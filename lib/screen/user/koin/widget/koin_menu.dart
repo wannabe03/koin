@@ -12,7 +12,7 @@ class KoinMenu extends StatelessWidget {
         gradient: const LinearGradient(
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
-          colors: [Color(0xFFCEE1FF), WHITE_COLOR],
+          colors: [Color(0xFFCEE1FF), GrayScale.white],
         ),
         boxShadow: [
           BoxShadow(

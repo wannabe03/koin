@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:koin/common/const/colors.dart';
+import 'package:koin/screen/user/signup/view/gradient_container.dart';
+import 'package:koin/screen/user/signup/view/signup_set_password.dart';
+import 'package:koin/screen/user/signup/view/terms_of_use.dart';
+import 'package:koin/screen/user/signup/widget/guided_textbutton.dart';
 import 'package:koin/screen/user/signup/widget/page_indicator.dart';
 import 'package:pinput/pinput.dart';
 import 'package:koin/screen/user/signup/view/signup_reset_password_screen.dart';
@@ -17,6 +21,16 @@ class _SecurityCodeScreenState extends State<SecurityCodeScreen> {
   final pinController = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+    pinController.addListener(_updateState);
+  }
+
+  void _updateState() {
+    setState(() {});
+  }
+
+  @override
   void dispose() {
     pinController.dispose();
     super.dispose();
@@ -27,135 +41,100 @@ class _SecurityCodeScreenState extends State<SecurityCodeScreen> {
     final defaultPinTheme = PinTheme(
       width: 56,
       height: 56,
-      textStyle: const TextStyle(
-        fontSize: 22,
-        color: Color.fromRGBO(30, 60, 87, 1),
-      ),
+      textStyle: const TextStyle(fontSize: 22, color: GrayScale.gray500),
       decoration: BoxDecoration(
-        color: Colors.grey[200],
+        color: GrayScale.gray200,
         borderRadius: BorderRadius.circular(8),
         border: Border.all(color: Colors.transparent),
       ),
     );
 
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: PRIMARY_COLOR,
-        elevation: 0,
-        toolbarHeight: 80,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, color: WHITE_COLOR),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-        title: const Text(
-          'Security Code',
-          style: TextStyle(
-            color: WHITE_COLOR,
-            fontWeight: FontWeight.bold,
-            fontSize: 24,
+    return GradientContainer(
+      hasSubmitButton: true,
+      submitCallback:
+          () => Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => const SetPasswordScreen()),
           ),
-        ),
-        centerTitle: true,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const SizedBox(height: 40),
-            RichText(
-              textAlign: TextAlign.center,
-              text: TextSpan(
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                  height: 1.5,
+      submitLabel: "Next",
+      isSubmitEnabled: pinController.text.isNotEmpty,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const Spacer(flex: 3),
+          RichText(
+            textAlign: TextAlign.start,
+            text: TextSpan(
+              style: Theme.of(context).textTheme.headlineLarge,
+              children: [
+                const TextSpan(text: 'We sent numbers to your email.\n'),
+                // TextSpan(
+                //   text: widget.email,
+                //   style: const TextStyle(fontWeight: FontWeight.bold),
+                // ),
+                TextSpan(
+                  text: 'Please enter the code ',
+                  style: TextStyle(color: PRIMARY_COLOR),
                 ),
-                children: [
-                  const TextSpan(text: 'We sent numbers to your email '),
-                  TextSpan(
-                    text: widget.email,
-                    style: const TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ],
+                TextSpan(text: 'to verify your identity.'),
+              ],
+            ),
+          ),
+
+          const Spacer(flex: 4),
+          Pinput(
+            controller: pinController,
+            length: 4,
+            defaultPinTheme: defaultPinTheme,
+            focusedPinTheme: defaultPinTheme.copyWith(
+              decoration: defaultPinTheme.decoration!.copyWith(
+                border: Border.all(color: PRIMARY_COLOR),
               ),
             ),
-            const SizedBox(height: 8),
-            const Text(
-              'Please enter the code to verify your identity.',
-              style: TextStyle(
-                color: PRIMARY_COLOR,
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
+            onCompleted: (pin) {},
+          ),
+          const Spacer(flex: 2),
+          Column(
+            spacing: 8,
+            children: [
+              Text(
+                'Not received the code?',
+                style: Theme.of(
+                  context,
+                ).textTheme.labelLarge?.copyWith(color: GrayScale.gray400),
               ),
-            ),
-            const SizedBox(height: 40),
-            Pinput(
-              controller: pinController,
-              length: 4,
-              defaultPinTheme: defaultPinTheme,
-              focusedPinTheme: defaultPinTheme.copyWith(
-                decoration: defaultPinTheme.decoration!.copyWith(
-                  border: Border.all(color: PRIMARY_COLOR),
-                ),
-              ),
-              onCompleted: (pin) {},
-            ),
-            const SizedBox(height: 30),
-            const Text(
-              'Not received the code?',
-              style: TextStyle(color: Colors.grey),
-            ),
-            const SizedBox(height: 12),
-            SizedBox(
-              width: 200,
-              child: ElevatedButton(
-                onPressed: () => Navigator.of(context).pop(),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color.fromRGBO(206, 225, 255, 1.0),
-                  elevation: 0,
-                ),
-                child: const Text(
-                  'Resend the code',
-                  style: TextStyle(color: WHITE_COLOR),
-                ),
-              ),
-            ),
-            const Spacer(),
-            const PageIndicator(length: 3, currentIndex: 1),
-            const SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => const ResetPasswordScreen(),
+              SizedBox(
+                width: 280,
+                child: ElevatedButton(
+                  onPressed: () => Navigator.of(context).pop(),
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadiusGeometry.circular(10),
                     ),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: PRIMARY_COLOR,
-                  foregroundColor: WHITE_COLOR,
-                  minimumSize: const Size(double.infinity, 52),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(26),
+                    // TODO: apply new color: midgrey
+                    backgroundColor: GrayScale.gray300,
+                    elevation: 0,
+                    splashFactory: NoSplash.splashFactory,
                   ),
-                ),
-                child: const Text(
-                  'Next',
-                  style: TextStyle(
-                    fontFamily: 'Pretendard',
-                    fontSize: 18,
-                    fontWeight: FontWeight.w400,
+                  child: Text(
+                    'Resend the code',
+                    style: Theme.of(
+                      context,
+                    ).textTheme.labelLarge?.copyWith(color: GrayScale.white),
                   ),
                 ),
               ),
+            ],
+          ),
+          const Spacer(flex: 8),
+          GuidedTextButton(
+            nextRoute: MaterialPageRoute(
+              builder: (context) => TermsOfUseScreen(),
             ),
-            const SizedBox(height: 20),
-          ],
-        ),
+            guideText: "Do you have any questions?",
+            label: "Terms of Use",
+          ),
+          const Spacer(flex: 3),
+        ],
       ),
     );
   }

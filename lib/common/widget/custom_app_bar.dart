@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:koin/common/const/colors.dart';
 import 'custom_icon_button.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../screen/user/koin/view/search_screen.dart';
@@ -15,7 +16,7 @@ AppBar customAppBar(BuildContext context, {Function(int)? onTabSelected}) {
         const Text(
           'Koin',
           style: TextStyle(
-            color: Color(0xFF408AFA),
+            color: PRIMARY_COLOR,
             fontFamily: 'GapyeongHanseokbong',
             fontSize: 24,
             fontWeight: FontWeight.w700,

@@ -53,7 +53,7 @@ class SplashScreenUI extends StatelessWidget {
                     (bounds) => const LinearGradient(
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
-                      colors: [WHITE_COLOR, WHITE_COLOR],
+                      colors: [GrayScale.white, GrayScale.white],
                     ).createShader(
                       Rect.fromLTWH(0, 0, bounds.width, bounds.height),
                     ),
@@ -63,7 +63,7 @@ class SplashScreenUI extends StatelessWidget {
                     fontFamily: 'GapyeongHanseokbong',
                     fontSize: 72,
                     fontWeight: FontWeight.w700,
-                    color: WHITE_COLOR,
+                    color: GrayScale.white,
                   ),
                 ),
               ),

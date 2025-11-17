@@ -4,7 +4,6 @@ import '../widget/search_app_bar.dart';
 import '../widget/kuration_banner.dart';
 import 'package:koin/common/const/colors.dart';
 import 'package:koin/common/widget/custom_bottom_navigation_bar.dart';
-import 'package:koin/screen/user/home_screen.dart';
 
 class SearchScreen extends StatelessWidget {
   final Function(int)? onTabSelected;

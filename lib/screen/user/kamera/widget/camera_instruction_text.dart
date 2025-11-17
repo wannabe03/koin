@@ -13,7 +13,7 @@ class CameraInstructionText extends StatelessWidget {
           Text(
             'Show something or upload an image.',
             style: TextStyle(
-              color: Colors.black.withValues(alpha: 0.20),
+              color: GrayScale.black_20,
               fontSize: 12,
               fontWeight: FontWeight.w500,
             ),
@@ -22,7 +22,7 @@ class CameraInstructionText extends StatelessWidget {
           Text(
             '(You can ask though your voice.)',
             style: TextStyle(
-              color: Colors.black.withValues(alpha: 0.20),
+              color: GrayScale.black_20,
               fontSize: 12,
               fontWeight: FontWeight.w500,
             ),

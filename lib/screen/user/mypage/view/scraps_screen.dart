@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:koin/common/const/colors.dart';
 
 class ScrappedKuration {
   final String imageUrl;
@@ -265,7 +266,7 @@ class _ScrappedKurationCard extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.all(4),
               decoration: BoxDecoration(
-                color: Colors.black.withValues(alpha: 0.5),
+                color: GrayScale.black_50,
                 borderRadius: BorderRadius.circular(4),
               ),
               child: const Icon(Icons.bookmark, color: Colors.white, size: 20),
