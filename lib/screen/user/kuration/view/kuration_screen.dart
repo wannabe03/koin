@@ -44,16 +44,12 @@ class _KurationScreenState extends State<KurationScreen>
       length: _tabs.length,
       child: SafeArea(
         child: Column(
+          spacing: 8,
           children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 8.0),
-              child: KurationSearchField(onAlarmTap: () {}),
-            ),
-            const SizedBox(height: 8),
+            KurationSearchField(onAlarmTap: () {}),
             KurationFeatured(controller: _pageController),
-            const SizedBox(height: 8),
             KurationTabs(controller: _tabController, tabs: _tabs),
-            const Divider(thickness: 1, height: 1, color: Color(0xFFF0F0F0)),
+            // const Divider(thickness: 1, height: 1, color: Color(0xFFF0F0F0)),
             Expanded(
               child: TabBarView(
                 controller: _tabController,

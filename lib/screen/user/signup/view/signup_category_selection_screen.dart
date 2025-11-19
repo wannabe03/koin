@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:koin/common/const/colors.dart';
+import 'package:koin/screen/user/home_screen.dart';
 import 'package:koin/screen/user/koin/view/koin_screen.dart';
 import 'package:koin/screen/user/signup/view/gradient_container.dart';
 import 'package:koin/screen/user/signup/widget/selection_section.dart';
@@ -67,20 +68,9 @@ class _CategorySelectionScreenState extends State<CategorySelectionScreen> {
   ];
 
   void _goToNextStep() {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder:
-            (context) => KoinScreen(
-              // selectedNationality: widget.selectedNationality,
-              // selectedLanguage: widget.selectedLanguage,
-              // selectedResidenceType: widget.selectedResidenceType,
-              // selectedResidencePeriod: widget.selectedResidencePeriod,
-              // selectedCategories: _selectedCategories,
-              // selectedRegions: _selectedRegions,
-              // selectedCultures: _selectedCultures,
-            ),
-      ),
-    );
+    Navigator.of(
+      context,
+    ).push(MaterialPageRoute(builder: (context) => HomeScreen()));
   }
 
   @override

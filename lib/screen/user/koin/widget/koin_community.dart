@@ -45,36 +45,27 @@ class KoinCommunity extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
         child: Column(
+          spacing: 16,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    Text(
-                      '커뮤니티',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontFamily: 'GapyeongHanseokbong',
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                        letterSpacing: -0.32,
+                RichText(
+                  text: TextSpan(
+                    style: Theme.of(
+                      context,
+                    ).textTheme.headlineMedium?.copyWith(fontSize: 16),
+                    children: <TextSpan>[
+                      TextSpan(text: '커뮤니티 '),
+                      TextSpan(
+                        text: 'K-ommunity',
+                        style: TextStyle(color: GrayScale.gray300),
                       ),
-                    ),
-                    const SizedBox(width: 4),
-                    Text(
-                      'K-ommunity',
-                      style: TextStyle(
-                        color: Color(0xFFBCBCBC),
-                        fontFamily: 'GapyeongHanseokbong',
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                        letterSpacing: -0.32,
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
+
                 GestureDetector(
                   onTap: () {
                     Navigator.push(
@@ -86,20 +77,15 @@ class KoinCommunity extends StatelessWidget {
                     );
                   },
                   child: Text(
-                    '전체보기 →',
-                    style: TextStyle(
-                      color: PRIMARY_COLOR,
-                      fontFamily: 'Pretendard',
-                      fontSize: 10,
+                    'All →',
+                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
                       fontWeight: FontWeight.w500,
-                      letterSpacing: -0.2,
+                      color: PRIMARY_COLOR,
                     ),
-                    textAlign: TextAlign.right,
                   ),
                 ),
               ],
             ),
-            const SizedBox(height: 16),
             ListView.separated(
               itemCount: posts.length,
               shrinkWrap: true,
@@ -115,7 +101,7 @@ class KoinCommunity extends StatelessWidget {
               separatorBuilder:
                   (context, index) => Container(
                     height: 0.5,
-                    color: const Color(0xFFD9D9D9),
+                    color: GrayScale.gray200,
                     margin: const EdgeInsets.symmetric(horizontal: 12),
                   ),
             ),
@@ -127,14 +113,15 @@ class KoinCommunity extends StatelessWidget {
 
   Widget _buildPostItem(String title, String content, String time) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+      // color: Colors.amber,
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             title,
             style: const TextStyle(
-              color: Color(0xFF737373),
+              color: GrayScale.gray600,
               fontFamily: 'Pretendard',
               fontSize: 14,
               fontWeight: FontWeight.w600,

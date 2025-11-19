@@ -7,28 +7,25 @@ class KurationTabs extends StatelessWidget {
 
   const KurationTabs({super.key, required this.controller, required this.tabs});
 
+  // TODO: align left
   @override
   Widget build(BuildContext context) {
     return TabBar(
+      splashFactory: NoSplash.splashFactory,
       controller: controller,
       isScrollable: true,
       labelColor: PRIMARY_COLOR,
-      unselectedLabelColor: Colors.grey,
-      indicatorColor: PRIMARY_COLOR,
+      unselectedLabelColor: GrayScale.gray500,
+      indicatorColor: Colors.transparent,
       indicatorSize: TabBarIndicatorSize.label,
-      labelStyle: const TextStyle(
-        fontWeight: FontWeight.w600,
-        fontSize: 16,
-        fontFamily: 'Pretendard',
-      ),
-      unselectedLabelStyle: const TextStyle(
-        fontWeight: FontWeight.w500,
-        fontSize: 16,
-        fontFamily: 'Pretendard',
-      ),
+
+      labelStyle: Theme.of(
+        context,
+      ).textTheme.titleLarge?.copyWith(color: PRIMARY_COLOR),
+      unselectedLabelStyle: Theme.of(
+        context,
+      ).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w500),
       tabs: tabs.map((name) => Tab(text: name)).toList(),
     );
   }
 }
-
-

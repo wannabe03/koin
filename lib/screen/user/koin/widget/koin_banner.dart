@@ -126,43 +126,36 @@ class _KoinBannerState extends State<KoinBanner> {
             left: 20,
             bottom: 24,
             child: Column(
+              spacing: 6,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Category
-                Text(
-                  widget.banners[_currentPage].category,
-                  style: const TextStyle(
-                    color: GrayScale.white,
-                    fontFamily: 'GapyeongHanseokbong',
-                    fontSize: 14,
-                    fontWeight: FontWeight.w700,
-                    letterSpacing: -0.28,
-                  ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      widget.banners[_currentPage].category,
+                      style: Theme.of(
+                        context,
+                      ).textTheme.titleMedium?.copyWith(color: GrayScale.white),
+                    ),
+                    // Title
+                    Text(
+                      widget.banners[_currentPage].title,
+                      style: Theme.of(context).textTheme.displayMedium
+                          ?.copyWith(height: 45 / 32, color: GrayScale.white),
+                    ),
+                  ],
                 ),
-                const SizedBox(height: 6),
-                // Title
-                Text(
-                  widget.banners[_currentPage].title,
-                  style: const TextStyle(
-                    color: GrayScale.white,
-                    fontFamily: 'Pretendard',
-                    fontSize: 32,
-                    fontWeight: FontWeight.w700,
-                    letterSpacing: -0.64,
-                  ),
-                ),
-                const SizedBox(height: 6),
+
                 // Subtitle
                 Row(
                   children: [
                     Text(
                       widget.banners[_currentPage].subtitle,
-                      style: const TextStyle(
-                        color: GrayScale.white,
-                        fontFamily: 'Pretendard',
-                        fontSize: 16,
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         fontWeight: FontWeight.w500,
-                        letterSpacing: -0.32,
+                        color: GrayScale.white,
                       ),
                     ),
                   ],

@@ -10,20 +10,18 @@ AppBar customAppBar(BuildContext context, {Function(int)? onTabSelected}) {
     elevation: 0,
     automaticallyImplyLeading: false,
     title: Row(
+      spacing: 8,
       children: [
-        Image.asset('asset/img/icon/AppBar_Icon.png', width: 32),
-        const SizedBox(width: 8),
-        const Text(
+        SvgPicture.asset('asset/img/icon/main_logo.svg', width: 32),
+        Text(
           'Koin',
-          style: TextStyle(
-            color: PRIMARY_COLOR,
-            fontFamily: 'GapyeongHanseokbong',
-            fontSize: 24,
-            fontWeight: FontWeight.w700,
-          ),
+          style: Theme.of(
+            context,
+          ).textTheme.displaySmall?.copyWith(color: PRIMARY_COLOR),
         ),
       ],
     ),
+    actionsPadding: EdgeInsets.only(right: 8),
     actions: [
       CustomIconButton(
         imagePath: 'asset/img/icon/Search.svg',
