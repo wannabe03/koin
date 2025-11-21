@@ -72,6 +72,19 @@ class _SignUpInfoScreenState extends State<SignUpInfoScreen> {
   @override
   Widget build(BuildContext context) {
     return GradientContainer(
+      title: TextSpan(
+        style: Theme.of(context).textTheme.headlineLarge,
+        children: [
+          TextSpan(
+            text:
+                'To help you use Koin more effectively, please select your \n',
+          ),
+          TextSpan(
+            text: 'visit information.\n',
+            style: TextStyle(color: PRIMARY_COLOR),
+          ),
+        ],
+      ),
       hasSubmitButton: true,
       submitCallback:
           () => Navigator.of(context).push(
@@ -87,27 +100,18 @@ class _SignUpInfoScreenState extends State<SignUpInfoScreen> {
           ),
       submitLabel: "Next",
       isSubmitEnabled: isEveryInfoFilled,
+      hasBottomTextButton: true,
+      bottomNextRoute: MaterialPageRoute(
+        builder: (context) => TermsOfUseScreen(),
+      ),
+      bottomGuideText: "Do you have any question?",
+      bottomTextLabel: "Terms of Use",
+
       child: Column(
+        spacing: 24,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Spacer(flex: 3),
-          RichText(
-            text: TextSpan(
-              style: Theme.of(context).textTheme.headlineLarge,
-              children: [
-                TextSpan(
-                  text:
-                      'To help you use Koin more effectively, please select your \n',
-                ),
-                TextSpan(
-                  text: 'visit information.',
-                  style: TextStyle(color: PRIMARY_COLOR),
-                ),
-              ],
-            ),
-          ),
-
-          const Spacer(flex: 1),
+          SizedBox(height: 16),
           DropdownField(
             label: 'Nationality',
             value: _selectedNationality,
@@ -119,7 +123,7 @@ class _SignUpInfoScreenState extends State<SignUpInfoScreen> {
               });
             },
           ),
-          const SizedBox(height: 30),
+
           DropdownField(
             label: 'Language',
             value: _selectedLanguage,
@@ -131,7 +135,7 @@ class _SignUpInfoScreenState extends State<SignUpInfoScreen> {
               });
             },
           ),
-          const SizedBox(height: 30),
+
           DropdownField(
             label: 'Residence type',
             value: _selectedResidenceType,
@@ -143,7 +147,7 @@ class _SignUpInfoScreenState extends State<SignUpInfoScreen> {
               });
             },
           ),
-          const SizedBox(height: 30),
+
           DropdownField(
             label: 'Residence Period',
             value: _selectedResidencePeriod,
@@ -155,16 +159,6 @@ class _SignUpInfoScreenState extends State<SignUpInfoScreen> {
               });
             },
           ),
-          const Spacer(flex: 4),
-          GuidedTextButton(
-            nextRoute: MaterialPageRoute(
-              builder: (context) => TermsOfUseScreen(),
-            ),
-            guideText: "Do you have any question?",
-            label: "Terms of Use",
-          ),
-
-          const Spacer(flex: 3),
         ],
       ),
     );

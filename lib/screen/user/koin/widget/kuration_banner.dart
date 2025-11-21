@@ -31,35 +31,20 @@ class KurationBanner extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(top: 12, bottom: 12, left: 16),
         child: Column(
+          spacing: 16,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 12),
-                  child: Row(
+                RichText(
+                  text: TextSpan(
+                    style: Theme.of(context).textTheme.headlineMedium,
                     children: [
-                      Text(
-                        '큐레이션',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontFamily: 'GapyeongHanseokbong',
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                          letterSpacing: -0.32,
-                        ),
-                      ),
-                      const SizedBox(width: 4),
-                      Text(
-                        'K-uration',
-                        style: TextStyle(
-                          color: Color(0xFFBCBCBC),
-                          fontFamily: 'GapyeongHanseokbong',
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                          letterSpacing: -0.32,
-                        ),
+                      TextSpan(text: '큐레이션 '),
+                      TextSpan(
+                        text: 'K-uration',
+                        style: TextStyle(color: GrayScale.gray300),
                       ),
                     ],
                   ),
@@ -67,20 +52,15 @@ class KurationBanner extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(right: 16),
                   child: Text(
-                    '전체보기 →',
-                    style: TextStyle(
+                    'All →',
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       color: PRIMARY_COLOR,
-                      fontFamily: 'Pretendard',
-                      fontSize: 10,
                       fontWeight: FontWeight.w500,
-                      letterSpacing: -0.2,
                     ),
-                    textAlign: TextAlign.right,
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 12.0),
             KurationView(items: sample),
           ],
         ),

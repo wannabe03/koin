@@ -17,49 +17,53 @@ class SelectionSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: const TextStyle(
-            fontFamily: 'Pretendard',
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            color: GrayScale.black,
+    return SizedBox(
+      width: double.infinity,
+      child: Column(
+        spacing: 8,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: Theme.of(
+              context,
+            ).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w500),
           ),
-        ),
-        const SizedBox(height: 15),
-        Wrap(
-          spacing: 10.0,
-          runSpacing: 10.0,
-          children:
-              options.map((option) {
-                final bool isSelected = selectedOptions.contains(option);
-                return ChoiceChip(
-                  label: Text(option),
-                  selected: isSelected,
-                  showCheckmark: false,
-                  onSelected: (selected) => onToggle(option),
-                  selectedColor: PRIMARY_COLOR,
-                  labelStyle: TextStyle(
-                    fontFamily: 'Pretendard',
-                    color: isSelected ? GrayScale.white : PRIMARY_COLOR,
-                    fontSize: 16,
-                  ),
-                  backgroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                    side: const BorderSide(color: PRIMARY_COLOR),
-                  ),
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 15,
-                    vertical: 10,
-                  ),
-                );
-              }).toList(),
-        ),
-      ],
+          Wrap(
+            spacing: 8,
+            children:
+                options.map((option) {
+                  final bool isSelected = selectedOptions.contains(option);
+                  return ChoiceChip(
+                    label: Text(option),
+                    selected: isSelected,
+                    showCheckmark: false,
+                    onSelected: (selected) => onToggle(option),
+                    selectedColor: PRIMARY_COLOR,
+                    labelStyle:
+                        isSelected
+                            ? Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: GrayScale.white,
+                              fontWeight: FontWeight.w600,
+                            )
+                            : Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: PRIMARY_COLOR,
+                              fontWeight: FontWeight.w600,
+                            ),
+                    backgroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      side: const BorderSide(color: PRIMARY_COLOR),
+                    ),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 4,
+                    ),
+                  );
+                }).toList(),
+          ),
+        ],
+      ),
     );
   }
 }

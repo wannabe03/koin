@@ -29,6 +29,7 @@ class DropdownField extends StatelessWidget {
         ),
         DropdownButtonFormField<String>(
           initialValue: value,
+          isDense: true,
           decoration: const InputDecoration(
             enabledBorder: UnderlineInputBorder(
               borderSide: BorderSide(color: PRIMARY_COLOR),
@@ -40,6 +41,7 @@ class DropdownField extends StatelessWidget {
           ),
           icon: const Icon(Icons.arrow_drop_down, color: Colors.grey),
           isExpanded: true,
+
           hint: Text(
             'Select $label',
             style: Theme.of(context).textTheme.headlineMedium?.copyWith(
@@ -66,6 +68,7 @@ class DropdownField extends StatelessWidget {
                 item,
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                   fontWeight: FontWeight.w400,
+                  overflow: TextOverflow.visible,
                 ),
               );
             }).toList();

@@ -13,12 +13,6 @@ class SubmitButton extends StatelessWidget {
     required this.isEnabled,
   });
 
-  void debug(context) {
-    debugPrint(
-      "${MediaQuery.of(context).size.width} ${MediaQuery.of(context).size.height}",
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(

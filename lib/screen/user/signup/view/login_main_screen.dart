@@ -78,24 +78,15 @@ class MainLoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return GradientContainer(
       hasSubmitButton: false,
+      hasBottomTextButton: true,
+      bottomGuideText: "Forgot your account?",
+      bottomTextLabel: "Find My Account",
+      bottomNextRoute: MaterialPageRoute(
+        builder: (context) => ResetPasswordScreen(),
+      ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // LOGO AREA
-          const Spacer(flex: 6),
-          Column(
-            spacing: 32,
-            children: [
-              Image.asset('asset/img/icon/logo.png', width: 168),
-              // Text(
-              //   'Koin',
-              //   style: Theme.of(
-              //     context,
-              //   ).textTheme.displayLarge?.copyWith(color: PRIMARY_COLOR),
-              // ),
-            ],
-          ),
-          const Spacer(flex: 3),
           Column(
             spacing: 24,
             children: [
@@ -128,16 +119,8 @@ class MainLoginScreen extends StatelessWidget {
               ),
             ],
           ),
-          const Spacer(flex: 1),
+
           // FIND MY ACCOUNT
-          GuidedTextButton(
-            guideText: "Forgot your account?",
-            label: "Find My Account",
-            nextRoute: MaterialPageRoute(
-              builder: (context) => ResetPasswordScreen(),
-            ),
-          ),
-          const Spacer(flex: 1),
         ],
       ),
     );

@@ -64,7 +64,7 @@ class _InputFieldState extends State<InputField> {
     }
 
     return Padding(
-      padding: EdgeInsetsGeometry.symmetric(vertical: 8),
+      padding: EdgeInsetsGeometry.fromLTRB(0, 8, 0, 0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -77,36 +77,37 @@ class _InputFieldState extends State<InputField> {
           ),
           TextField(
             controller: widget.inputTextController,
-            obscureText: !_showPassword,
+            obscureText: widget.type == InputType.password && !_showPassword,
 
             keyboardType: keyboardType,
             cursorColor: GrayScale.black,
-            // TODO: apply new style?
-            style: const TextStyle(color: GrayScale.black),
+            style: Theme.of(
+              context,
+            ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w400),
             decoration: InputDecoration(
+              isDense: true,
               hintText: (widget.hintText),
-              hintStyle: Theme.of(
-                context,
-              ).textTheme.headlineSmall?.copyWith(color: GrayScale.gray400),
+              hintStyle: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                fontWeight: FontWeight.w500,
+                color: GrayScale.gray400,
+              ),
 
-              // NOTE: label makes small title which is animated when focused
-              // labelText: widget.labelText,
-              // labelStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
-              //   fontWeight: FontWeight.w500,
-              //   color: PRIMARY_COLOR,
-              // ),
-
-              // floatingLabelStyle: TextStyle(color: PRIMARY_COLOR),
               enabledBorder: UnderlineInputBorder(
                 borderSide: BorderSide(color: PRIMARY_COLOR),
               ),
               focusedBorder: UnderlineInputBorder(
                 borderSide: BorderSide(color: PRIMARY_COLOR, width: 2),
               ),
+              suffixIconConstraints: BoxConstraints(
+                maxWidth: 18,
+                maxHeight: 18,
+              ),
               suffixIcon:
                   widget.hasSuffixIcon != null
                       ? IconButton(
+                        style: IconButton.styleFrom(padding: EdgeInsets.all(0)),
                         splashColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
                         enableFeedback: false,
                         hoverColor: Colors.transparent,
                         onPressed: () => _toggleVisibility(),

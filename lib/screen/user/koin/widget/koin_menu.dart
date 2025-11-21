@@ -12,7 +12,7 @@ class KoinMenu extends StatelessWidget {
         gradient: const LinearGradient(
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
-          colors: [Color(0xFFCEE1FF), GrayScale.white],
+          colors: [Color.fromARGB(127, 206, 225, 255), GrayScale.white],
         ),
         boxShadow: [
           BoxShadow(
@@ -24,37 +24,27 @@ class KoinMenu extends StatelessWidget {
         ],
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 8),
         child: Column(
+          spacing: 12,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                Text(
-                  '내 메뉴',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontFamily: 'GapyeongHanseokbong',
-                    fontSize: 12,
-                    fontWeight: FontWeight.w400,
-                    letterSpacing: -0.24,
+            RichText(
+              text: TextSpan(
+                style: Theme.of(
+                  context,
+                ).textTheme.headlineMedium?.copyWith(fontSize: 16),
+                children: <TextSpan>[
+                  TextSpan(text: '내 메뉴 '),
+                  TextSpan(
+                    text: 'My Menu',
+                    style: TextStyle(color: GrayScale.gray300),
                   ),
-                ),
-                SizedBox(width: 2),
-                Text(
-                  'My Menu',
-                  style: TextStyle(
-                    color: Color(0xFFBCBCBC),
-                    fontFamily: 'GapyeongHanseokbong',
-                    fontSize: 12,
-                    fontWeight: FontWeight.w400,
-                    letterSpacing: -0.24,
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
-            const SizedBox(height: 4),
             GridView.count(
+              padding: EdgeInsets.symmetric(horizontal: 12),
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               crossAxisCount: 4,

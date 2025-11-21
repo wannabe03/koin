@@ -49,7 +49,6 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
       setState(() {
         isPasswordConfirmed = true;
       });
-      debugPrint("$isPasswordConfirmed");
     } else {
       isPasswordConfirmed = false;
     }
@@ -58,6 +57,16 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     return GradientContainer(
+      title: TextSpan(
+        style: Theme.of(context).textTheme.headlineLarge,
+        children: [
+          TextSpan(text: "Protect your account by\n"),
+          TextSpan(
+            text: "setting a password.\n",
+            style: TextStyle(color: PRIMARY_COLOR),
+          ),
+        ],
+      ),
       hasSubmitButton: true,
       isSubmitEnabled: isPasswordConfirmed,
       submitCallback:
@@ -65,30 +74,20 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
             context,
           ).push(MaterialPageRoute(builder: (context) => SignUpInfoScreen())),
       submitLabel: "Next",
+
+      hasBottomTextButton: false,
+      bottomNextRoute: MaterialPageRoute(
+        builder: (context) => TermsOfUseScreen(),
+      ),
+      bottomGuideText: "Do you have any question?",
+      bottomTextLabel: "Terms of Use",
       child: Column(
+        spacing: 16,
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
 
         children: [
-          const Spacer(flex: 3),
-          SizedBox(
-            width: double.infinity,
-            child: RichText(
-              textAlign: TextAlign.start,
-              text: TextSpan(
-                style: Theme.of(context).textTheme.headlineLarge,
-                children: [
-                  TextSpan(text: "Protect your account by\n"),
-                  TextSpan(
-                    text: "setting a password.",
-                    style: TextStyle(color: PRIMARY_COLOR),
-                  ),
-                ],
-              ),
-            ),
-          ),
-
-          const Spacer(flex: 2),
+          SizedBox(height: 16),
           InputField(
             inputTextController: _passwordController,
             labelText: 'New Password',
@@ -101,15 +100,6 @@ class _SetPasswordScreenState extends State<SetPasswordScreen> {
             type: InputType.password,
             hasSuffixIcon: true,
           ),
-          const Spacer(flex: 6),
-          GuidedTextButton(
-            nextRoute: MaterialPageRoute(
-              builder: (context) => TermsOfUseScreen(),
-            ),
-            guideText: "Do you have any question?",
-            label: "Terms of Use",
-          ),
-          const Spacer(flex: 2),
         ],
       ),
     );

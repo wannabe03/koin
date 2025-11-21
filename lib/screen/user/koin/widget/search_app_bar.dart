@@ -14,43 +14,35 @@ class SearchAppBar extends StatelessWidget implements PreferredSizeWidget {
       surfaceTintColor: Colors.white,
       scrolledUnderElevation: 0,
       title: Container(
-        padding: const EdgeInsets.only(bottom: 10),
+        padding: const EdgeInsets.symmetric(vertical: 20),
         child: Container(
-          height: 48, 
+          height: 48,
           decoration: BoxDecoration(
-            color: Color.fromRGBO(217, 217, 217, 0.30),
-            borderRadius: BorderRadius.circular(30), 
+            color: GrayScale.gray100,
+            borderRadius: BorderRadius.circular(30),
           ),
           child: Row(
             children: [
               Expanded(
                 child: TextField(
-                  style: const TextStyle(
-                    color: Colors.black, 
-                    fontFamily: 'Pretendard', 
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500, 
-                    letterSpacing: -0.32,
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.w500,
+                    color: GrayScale.black,
                   ),
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     isDense: true,
                     contentPadding: EdgeInsets.symmetric(horizontal: 20),
                     hintText: '검색어를 입력해주세요.',
-                    hintStyle: TextStyle(
-                      color: Colors.black,
-                      fontFamily: 'Pretendard',
-                      fontSize: 16,
+                    hintStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
                       fontWeight: FontWeight.w500,
-                      letterSpacing: -0.32,
+                      color: GrayScale.gray300,
                     ),
                     border: InputBorder.none,
                   ),
                   cursorColor: Colors.black,
                 ),
               ),
-              SvgPicture.asset(
-                'asset/img/icon/Search_Black.svg',
-              ),
+              SvgPicture.asset('asset/img/icon/Search_Black.svg'),
               SizedBox(width: 20),
             ],
           ),
@@ -60,5 +52,5 @@ class SearchAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(58);
+  Size get preferredSize => const Size.fromHeight(68);
 }

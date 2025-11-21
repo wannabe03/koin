@@ -11,32 +11,31 @@ class KoinScreen extends StatelessWidget {
     final List<BannerData> banners = [
       const BannerData(
         imagePath: 'asset/img/test/Banner_1.png',
-        category: '큐레이션 K-uration',
-        title: 'Koin 이용 가이드',
-        subtitle: '카드뉴스 ->',
+        category: 'K-uration',
+        title: 'How to use Koin',
+        subtitle: 'Read now ->',
       ),
       const BannerData(
         imagePath: 'asset/img/test/Banner_1.png',
-        category: '추천 콘텐츠',
-        title: '인기 큐레이션',
-        subtitle: '카드뉴스 ->',
+        category: 'Recommended',
+        title: 'Top Kuration',
+        subtitle: 'Read now ->',
       ),
       const BannerData(
         imagePath: 'asset/img/test/Banner_1.png',
-        category: '새로운 기능',
-        title: '최신 업데이트',
-        subtitle: '카드뉴스 ->',
+        category: 'New Features',
+        title: 'Latest Update',
+        subtitle: 'Read now ->',
       ),
     ];
 
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
+          spacing: 16,
           children: [
             KoinBanner(banners: banners),
-            const SizedBox(height: 18.0),
             const KoinMenu(),
-            const SizedBox(height: 18.0),
             const KoinCommunity(),
           ],
         ),

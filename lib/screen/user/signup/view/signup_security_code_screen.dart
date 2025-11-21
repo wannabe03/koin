@@ -39,8 +39,8 @@ class _SecurityCodeScreenState extends State<SecurityCodeScreen> {
   @override
   Widget build(BuildContext context) {
     final defaultPinTheme = PinTheme(
-      width: 56,
-      height: 56,
+      width: 36,
+      height: 36,
       textStyle: const TextStyle(fontSize: 22, color: GrayScale.gray500),
       decoration: BoxDecoration(
         color: GrayScale.gray200,
@@ -50,6 +50,17 @@ class _SecurityCodeScreenState extends State<SecurityCodeScreen> {
     );
 
     return GradientContainer(
+      title: TextSpan(
+        style: Theme.of(context).textTheme.headlineLarge,
+        children: [
+          const TextSpan(text: 'We sent numbers to your email.\n'),
+          TextSpan(
+            text: 'Please enter the code ',
+            style: TextStyle(color: PRIMARY_COLOR),
+          ),
+          TextSpan(text: 'to verify your identity.\n'),
+        ],
+      ),
       hasSubmitButton: true,
       submitCallback:
           () => Navigator.of(context).push(
@@ -57,83 +68,106 @@ class _SecurityCodeScreenState extends State<SecurityCodeScreen> {
           ),
       submitLabel: "Next",
       isSubmitEnabled: pinController.text.isNotEmpty,
+
+      hasBottomTextButton: true,
+      bottomNextRoute: MaterialPageRoute(
+        builder: (context) => TermsOfUseScreen(),
+      ),
+      bottomGuideText: "Do you have any questions?",
+      bottomTextLabel: "Terms of Use",
+
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const Spacer(flex: 3),
-          RichText(
-            textAlign: TextAlign.start,
-            text: TextSpan(
-              style: Theme.of(context).textTheme.headlineLarge,
+          Expanded(
+            flex: 2,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const TextSpan(text: 'We sent numbers to your email.\n'),
-                // TextSpan(
-                //   text: widget.email,
-                //   style: const TextStyle(fontWeight: FontWeight.bold),
-                // ),
-                TextSpan(
-                  text: 'Please enter the code ',
-                  style: TextStyle(color: PRIMARY_COLOR),
+                Pinput(
+                  obscureText: true,
+                  controller: pinController,
+                  length: 4,
+                  submittedPinTheme: PinTheme(
+                    width: 40,
+                    height: 40,
+                    textStyle: Theme.of(
+                      context,
+                    ).textTheme.headlineLarge?.copyWith(color: PRIMARY_COLOR),
+                    decoration: BoxDecoration(
+                      color: SUB_PRIMARY_COLOR,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  defaultPinTheme: PinTheme(
+                    width: 40,
+                    height: 40,
+                    textStyle: Theme.of(context).textTheme.headlineLarge
+                        ?.copyWith(color: GrayScale.gray500),
+                    decoration: BoxDecoration(
+                      color: GrayScale.gray200,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  focusedPinTheme: PinTheme(
+                    width: 40,
+                    height: 40,
+                    textStyle: Theme.of(context).textTheme.headlineLarge
+                        ?.copyWith(color: GrayScale.gray500),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: PRIMARY_COLOR),
+                      color: GrayScale.gray200,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+
+                  onCompleted: (pin) {},
                 ),
-                TextSpan(text: 'to verify your identity.'),
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 48),
+                  child: Container(
+                    height: 1.5,
+                    width: double.infinity,
+                    color: PRIMARY_COLOR,
+                  ),
+                ),
+                Column(
+                  spacing: 8,
+                  children: [
+                    Text(
+                      'Not received the code?',
+                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                        color: GrayScale.gray400,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 280,
+                      child: ElevatedButton(
+                        onPressed: () => {},
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadiusGeometry.circular(10),
+                          ),
+                          backgroundColor: PRIMARY_COLOR,
+                          disabledBackgroundColor: GrayScale.midgrey,
+                          elevation: 0,
+                          shadowColor: Colors.transparent,
+                          splashFactory: NoSplash.splashFactory,
+                        ),
+                        child: Text(
+                          'Resend the code',
+                          style: Theme.of(context).textTheme.labelLarge
+                              ?.copyWith(color: GrayScale.white),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
 
-          const Spacer(flex: 4),
-          Pinput(
-            controller: pinController,
-            length: 4,
-            defaultPinTheme: defaultPinTheme,
-            focusedPinTheme: defaultPinTheme.copyWith(
-              decoration: defaultPinTheme.decoration!.copyWith(
-                border: Border.all(color: PRIMARY_COLOR),
-              ),
-            ),
-            onCompleted: (pin) {},
-          ),
-          const Spacer(flex: 2),
-          Column(
-            spacing: 8,
-            children: [
-              Text(
-                'Not received the code?',
-                style: Theme.of(
-                  context,
-                ).textTheme.labelLarge?.copyWith(color: GrayScale.gray400),
-              ),
-              SizedBox(
-                width: 280,
-                child: ElevatedButton(
-                  onPressed: () => Navigator.of(context).pop(),
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadiusGeometry.circular(10),
-                    ),
-                    // TODO: apply new color: midgrey
-                    backgroundColor: GrayScale.gray300,
-                    elevation: 0,
-                    splashFactory: NoSplash.splashFactory,
-                  ),
-                  child: Text(
-                    'Resend the code',
-                    style: Theme.of(
-                      context,
-                    ).textTheme.labelLarge?.copyWith(color: GrayScale.white),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          const Spacer(flex: 8),
-          GuidedTextButton(
-            nextRoute: MaterialPageRoute(
-              builder: (context) => TermsOfUseScreen(),
-            ),
-            guideText: "Do you have any questions?",
-            label: "Terms of Use",
-          ),
-          const Spacer(flex: 3),
+          Spacer(flex: 1),
         ],
       ),
     );
