@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:koin/common/const/colors.dart';
 import 'package:koin/common/widget/custom_app_bar.dart';
 import 'package:koin/common/widget/custom_bottom_navigation_bar.dart';
 import 'package:koin/screen/user/koin/view/koin_screen.dart';
+import 'package:koin/screen/user/kuration/view/kuration_feed_screen.dart';
 import 'package:koin/screen/user/kuration/view/kuration_screen.dart';
 import 'package:koin/screen/user/kommunity/view/kommunity_screen.dart';
 import 'package:koin/screen/user/kamera/view/kamera_screen.dart';
@@ -53,19 +55,35 @@ class _HomeScreenState extends State<HomeScreen> {
         children: const [
           KoinScreen(),
           KurationScreen(),
+          // KurationFeedScreen(),
           KommunityScreen(),
           KameraScreen(),
           MyScreen(),
         ],
       ),
-      bottomNavigationBar: CustomBottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-          _pageController.jumpToPage(index);
-        },
+      bottomNavigationBar: Container(
+        width: MediaQuery.of(context).size.width,
+        decoration:
+            (_currentIndex != 1)
+                ? BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: GrayScale.black_20,
+                      offset: Offset(0, 32),
+                      blurRadius: 64,
+                    ),
+                  ],
+                )
+                : null,
+        child: CustomBottomNavigationBar(
+          currentIndex: _currentIndex,
+          onTap: (index) {
+            setState(() {
+              _currentIndex = index;
+            });
+            _pageController.jumpToPage(index);
+          },
+        ),
       ),
     );
   }

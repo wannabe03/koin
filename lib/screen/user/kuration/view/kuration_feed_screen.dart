@@ -1,49 +1,126 @@
 import 'package:flutter/material.dart';
+import 'package:koin/common/const/colors.dart';
+import 'package:koin/common/widget/custom_app_bar.dart';
+import 'package:koin/screen/user/kuration/widget/kuration_feed_card.dart';
+import 'package:koin/screen/user/kuration/widget/kuration_filter_chip.dart';
+import 'package:koin/screen/user/kuration/widget/kuration_search_field.dart';
+import 'package:koin/screen/user/kuration/widget/kuration_tabs.dart';
 
-class KurationFeedScreen extends StatelessWidget {
+class KurationFeedScreen extends StatefulWidget {
+  const KurationFeedScreen({super.key, required this.title});
   final String title;
 
-  const KurationFeedScreen({super.key, required this.title});
+  @override
+  State<StatefulWidget> createState() => _KurationFeedScreenState();
+}
+
+class _KurationFeedScreenState extends State<KurationFeedScreen>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+  late final String title;
+  final PageController _pageController = PageController();
+  final List<String> _tabs = [
+    'All',
+    'Food',
+    'Tips',
+    'Life',
+    'Place',
+    'Fest',
+    'Laws',
+  ];
+
+  final List<KurationFeedPost> _posts = [
+    KurationFeedPost(
+      username: 'channel.korean',
+      uploadedDateTime: DateTime.now(),
+      title: 'Daily Korean 5',
+      subtitle: '이거 두 개 얼마예요?',
+      imagePath: 'asset/img/examples/korea_palace.jpg',
+      likeCount: 68,
+      commentCount: 28,
+      scrapCount: 53,
+      comments: [],
+    ),
+    KurationFeedPost(
+      username: 'editor_j00',
+      uploadedDateTime: DateTime(2025, 11, 16, 0, 0, 0),
+      title: 'Whiskey Selection',
+      subtitle: '한국에서 만날 수 있는 위스키',
+      imagePath: 'asset/img/examples/whisky.jpg',
+      likeCount: 102,
+      commentCount: 40,
+      scrapCount: 80,
+      comments: [],
+    ),
+    KurationFeedPost(
+      username: 'foodfighter_',
+      uploadedDateTime: DateTime(2025, 11, 20, 0, 0, 0),
+      title: 'Seoul Tea Café 10',
+      subtitle: '세계에서 인정받는 우리 차',
+      imagePath: 'asset/img/examples/tea.png',
+      likeCount: 68,
+      commentCount: 28,
+      scrapCount: 53,
+      comments: [],
+    ),
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: _tabs.length, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    _pageController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-        elevation: 0,
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.notifications_none),
-            onPressed: () {},
-          ),
-        ],
-      ),
-      body: SingleChildScrollView(
-        child: Column(
+      body: SafeArea(
+        child: Stack(
           children: [
-            _buildPostItem(
-              context,
-              profileText: 'C',
-              name: 'chanel.korean',
-              time: '1 minute ago',
-              postTitle: 'Daily Korean 5',
-              imagePath: 'asset/img/examples/korea_palace.jpg',
-              likes: 68,
-              comments: 28,
-              scraps: 53,
-            ),
-            _buildPostItem(
-              context,
-              profileText: 'E',
-              name: 'editor_j00',
-              time: '5 day ago',
-              postTitle: 'Whiskey Selection',
-              imagePath: 'asset/img/examples/whisky.jpg',
-              likes: 102,
-              comments: 40,
-              scraps: 80,
+            SingleChildScrollView(
+              // TODO: fetch posts as list, map elements and build
+              child: Container(
+                color: GrayScale.gray100,
+                child: Column(
+                  children: [
+                    KurationSearchField(),
+                    KurationTabs(
+                      controller: _tabController,
+                      tabs: _tabs,
+                      hasSortButton: true,
+                      showShadow: true,
+                      sortOption: SortOption.latest,
+                      showShadowBottomOnly: true,
+                    ),
+                    Container(color: GrayScale.gray100),
+                    Column(
+                      spacing: 12,
+                      children: [
+                        SizedBox(),
+                        ..._posts.map(
+                          (e) => _buildPostItem(
+                            uploaderUsername: e.username,
+                            uploadedDateTime: e.uploadedDateTime,
+                            postTitle: e.title,
+                            postSubtitle: e.subtitle,
+                            imagePath: e.imagePath,
+                            likes: e.likeCount ?? 0,
+                            comments: e.commentCount ?? 0,
+                            scraps: e.scrapCount ?? 0,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
             ),
           ],
         ),
@@ -52,91 +129,29 @@ class KurationFeedScreen extends StatelessWidget {
   }
 
   Widget _buildPostItem(
-    BuildContext context, {
-    required String profileText,
-    required String name,
-    required String time,
+  // BuildContext context,
+  {
+    required String uploaderUsername,
+    required DateTime uploadedDateTime,
     required String postTitle,
+    required String postSubtitle,
     required String imagePath,
     required int likes,
     required int comments,
     required int scraps,
   }) {
-    return Card(
-      margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
-      elevation: 2.0,
-      clipBehavior: Clip.antiAlias,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ListTile(
-            leading: CircleAvatar(child: Text(profileText)),
-            title: Text(
-              name,
-              style: const TextStyle(fontWeight: FontWeight.bold),
-            ),
-            subtitle: Text(time, style: const TextStyle(color: Colors.grey)),
-            trailing: IconButton(
-              icon: const Icon(Icons.more_horiz),
-              onPressed: () {},
-            ),
-          ),
-          SizedBox(
-            height: 250,
-            width: double.infinity,
-            child: Image.asset(imagePath, fit: BoxFit.cover, cacheWidth: 500),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Text(
-              postTitle,
-              style: Theme.of(
-                context,
-              ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16.0,
-              vertical: 8.0,
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                _buildIconText(Icons.favorite, Colors.red, 'Like $likes'),
-                _buildIconText(
-                  Icons.chat_bubble_outline,
-                  Colors.grey[700]!,
-                  'Comment $comments',
-                ),
-                _buildIconText(
-                  Icons.bookmark_border,
-                  Colors.grey[700]!,
-                  'Scrap $scraps',
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 8),
-        ],
+    return KurationFeedCard(
+      post: KurationFeedPost(
+        imagePath: imagePath,
+        subtitle: postSubtitle,
+        title: postTitle,
+        username: uploaderUsername,
+        uploadedDateTime: uploadedDateTime,
+        likeCount: likes,
+        commentCount: comments,
+        scrapCount: scraps,
+        comments: [],
       ),
-    );
-  }
-
-  Widget _buildIconText(IconData icon, Color color, String text) {
-    return Row(
-      children: [
-        Icon(icon, color: color, size: 20),
-        const SizedBox(width: 4),
-        Text(
-          text,
-          style: const TextStyle(
-            fontWeight: FontWeight.w600,
-            color: Colors.black54,
-          ),
-        ),
-      ],
     );
   }
 }

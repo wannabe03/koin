@@ -7,6 +7,7 @@ const SUB_PRIMARY_COLOR = Color(0xFFCEE1FF);
 const SECONDARY_COLOR = Color(0xFFECF5C0);
 const RED_COLOR = Color(0xFFF84B1F);
 const GRAY_COLOR = Color(0xFFD8D8D8);
+const SEARCH_FIELD_BG = Color(0x4CD9D9D9);
 const GRADIENT_COLOR = Color(0xFFCEE1FF);
 const SPLASH_COLOR_START = Color(0xFF4A88F8);
 const SPLASH_COLOR_MIDDLE = Color(0xFF89D5FF);
@@ -19,7 +20,7 @@ class GrayScale {
   static const Color gray600 = Color(0xFF5A626D);
   static const Color gray500 = Color(0xFF7D8792);
   static const Color gray400 = Color(0xFF98A0A9);
-  static const Color gray300 = Color(0xFFC0C7CD);
+  static const Color gray300 = Color(0xFFAAB2BD);
   static const Color gray200 = Color(0xFFD6DBDF);
   static const Color gray100 = Color(0xFFF5F5F5);
   static const Color white = Color(0xFFFFFFFF);
@@ -28,5 +29,6 @@ class GrayScale {
   static const Color black_80 = Color(0xCC000000);
   static const Color black_50 = Color(0x80000000);
   static const Color black_20 = Color(0x33000000);
+  static const Color black_5 = Color(0x0D000000);
   static const Color gray200_30 = Color.fromARGB(30, 217, 217, 217);
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:koin/common/const/colors.dart';
 
 class KurationSearchField extends StatelessWidget {
   final VoidCallback? onAlarmTap;
@@ -8,34 +9,53 @@ class KurationSearchField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: Container(
-            height: 48,
-            decoration: BoxDecoration(
-              color: const Color(0xFFF0F0F0),
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: const TextField(
-              decoration: InputDecoration(
-                hintText: '게시글 검색',
-                hintStyle: TextStyle(color: Colors.grey),
-                prefixIcon: Icon(Icons.search, color: Colors.grey, size: 20),
-                border: InputBorder.none,
-                contentPadding: EdgeInsets.symmetric(vertical: 14.0, horizontal: 16.0),
+    bool hasNewAlert = false;
+    return Container(
+      color: GrayScale.white,
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        child: Row(
+          spacing: 16,
+          children: [
+            Expanded(
+              child: Container(
+                height: 48,
+                decoration: BoxDecoration(
+                  color: GrayScale.gray100,
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                child: TextField(
+                  decoration: InputDecoration(
+                    hintText: '게시글 검색',
+                    hintStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      color: GrayScale.gray300,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    border: InputBorder.none,
+                    contentPadding: EdgeInsets.symmetric(
+                      vertical: 10.0,
+                      horizontal: 16.0,
+                    ),
+                  ),
+                ),
               ),
             ),
-          ),
+            IconButton(
+              onPressed: onAlarmTap,
+              icon:
+                  hasNewAlert
+                      ? SvgPicture.asset(
+                        'asset/img/icon/Alarm_On.svg',
+                        height: 32,
+                      )
+                      : SvgPicture.asset(
+                        'asset/img/icon/Alarm_Off.svg',
+                        height: 24,
+                      ),
+            ),
+          ],
         ),
-        const SizedBox(width: 8),
-        IconButton(
-          onPressed: onAlarmTap,
-          icon: SvgPicture.asset('asset/img/icon/Alarm_Off.svg', width: 24, height: 24),
-        ),
-      ],
+      ),
     );
   }
 }
-
-

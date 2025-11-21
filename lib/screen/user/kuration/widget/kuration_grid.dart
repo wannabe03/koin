@@ -14,9 +14,9 @@ class KurationGrid extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        crossAxisSpacing: 16.0,
-        mainAxisSpacing: 16.0,
-        childAspectRatio: 0.8,
+        crossAxisSpacing: 8,
+        mainAxisSpacing: 8,
+        childAspectRatio: 179 / 135,
       ),
       itemCount: itemList.length,
       itemBuilder: (context, index) {
@@ -56,26 +56,20 @@ class KurationGrid extends StatelessWidget {
             Container(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [
-                    Colors.black.withValues(alpha: 0.7),
-                    Colors.transparent,
-                  ],
+                  colors: [GrayScale.black_50, Colors.transparent],
                   begin: Alignment.bottomCenter,
-                  end: const Alignment(0.0, 0.2),
+                  end: Alignment.topCenter,
                 ),
               ),
             ),
             Positioned(
               bottom: 12,
-              left: 12,
+              left: 18,
               child: Text(
                 title,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'Pretendard',
-                ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleLarge?.copyWith(color: GrayScale.white),
               ),
             ),
           ],

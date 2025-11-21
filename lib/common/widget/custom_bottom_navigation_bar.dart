@@ -14,53 +14,55 @@ class CustomBottomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      type: BottomNavigationBarType.fixed,
-      currentIndex: currentIndex,
-      backgroundColor: Colors.white,
-      elevation: 0,
-      onTap: onTap,
-      showSelectedLabels: true,
-      showUnselectedLabels: true,
-      selectedItemColor: PRIMARY_COLOR, 
-      unselectedItemColor: GRAY_COLOR,
-      selectedLabelStyle: const TextStyle(
-        fontFamily: 'GapyeongHanseokbong',
-        fontSize: 6,
-        fontWeight: FontWeight.w700,
+    return Container(
+      color: GrayScale.white,
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16),
+        child: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          currentIndex: currentIndex,
+          backgroundColor: Colors.white,
+          elevation: 0,
+          onTap: onTap,
+          selectedLabelStyle: Theme.of(
+            context,
+          ).textTheme.titleMedium?.copyWith(fontSize: 10),
+          unselectedLabelStyle: Theme.of(
+            context,
+          ).textTheme.titleMedium?.copyWith(fontSize: 10),
+          showSelectedLabels: true,
+          showUnselectedLabels: true,
+          selectedItemColor: PRIMARY_COLOR,
+          unselectedItemColor: GRAY_COLOR,
+          items: [
+            _buildItem(
+              label: 'Koin',
+              asset: 'asset/img/icon/Bottom_Koin.svg',
+              isActive: currentIndex == 0,
+            ),
+            _buildItem(
+              label: 'Kuration',
+              asset: 'asset/img/icon/Bottom_Kuration.svg',
+              isActive: currentIndex == 1,
+            ),
+            _buildItem(
+              label: 'Kommunity',
+              asset: 'asset/img/icon/Bottom_Kommunity.svg',
+              isActive: currentIndex == 2,
+            ),
+            _buildItem(
+              label: 'Kamera',
+              asset: 'asset/img/icon/Bottom_Kamera.svg',
+              isActive: currentIndex == 3,
+            ),
+            _buildItem(
+              label: 'My',
+              asset: 'asset/img/icon/Bottom_My.svg',
+              isActive: currentIndex == 4,
+            ),
+          ],
+        ),
       ),
-      unselectedLabelStyle: const TextStyle(
-        fontFamily: 'GapyeongHanseokbong',
-        fontSize: 6,
-        fontWeight: FontWeight.w700,
-      ),
-      items: [
-        _buildItem(
-          label: 'Koin',
-          asset: 'asset/img/icon/Bottom_Koin.svg',
-          isActive: currentIndex == 0,
-        ),
-        _buildItem(
-          label: 'Kuration',
-          asset: 'asset/img/icon/Bottom_Kuration.svg',
-          isActive: currentIndex == 1,
-        ),
-        _buildItem(
-          label: 'Kommunity',
-          asset: 'asset/img/icon/Bottom_Kommunity.svg',
-          isActive: currentIndex == 2,
-        ),
-        _buildItem(
-          label: 'Kamera',
-          asset: 'asset/img/icon/Bottom_Kamera.svg',
-          isActive: currentIndex == 3,
-        ),
-        _buildItem(
-          label: 'My',
-          asset: 'asset/img/icon/Bottom_My.svg',
-          isActive: currentIndex == 4,
-        ),
-      ],
     );
   }
 
